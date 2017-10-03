@@ -13,7 +13,7 @@ if(!isset($_SESSION['login']) || !isset($_SESSION['pass_md5']) || ($_SESSION['ti
 {
   if(isset($_GET['page']) && $_GET['page']=="register")
   {include_once 'ctrl/user/user_register.php';}
-  else{include_once('ctrl/login.php');}
+  else{include_once('ctrl/user/login.php');}
 }
 else //onpeut afficher tout autre page
 {
@@ -36,23 +36,23 @@ else //onpeut afficher tout autre page
       break;
 
       case 'login':
-      include_once('ctrl/login.php');
+      include_once('ctrl/user/login.php');
       break;
 
       case 'carnet':
-      include_once('ctrl/carnet.php');
+      include_once('ctrl/carnet/carnet.php');
       break;
 
       case 'ajout_modif_saut':
-      include_once 'ctrl/ajout_modif_saut.php';
+      include_once 'ctrl/carnet/ajout_modif_saut.php';
       break;
 
       case 'suppr_saut':
-      include_once 'ctrl/suppr_saut.php';
+      include_once 'ctrl/carnet/suppr_saut.php';
       break;
 
       case 'admin':
-      include_once 'ctrl/admin.php';
+      include_once 'ctrl/admin/admin.php';
       break;
 
       case 'carnetpdf':
