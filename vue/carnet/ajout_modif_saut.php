@@ -47,11 +47,11 @@
                     <div class="btn-group" data-toggle="buttons">
                       <label class="btn btn-primary <?php if($element['BS']==1){echo "active";} ?>" >
                         <input type="radio" name="BS" value="1" id="BS_biplace" <?php if($element['BS']==1){echo "checked=checked";} ?>>
-                        <img src="img/tandem.png" style="height:20px"/>  Biplace
+                        <img src="img/tandem_blanc.png" style="height:20px"/>  Biplace
                       </label>
                       <label class="btn btn-primary <?php if($element['BS']==0){echo "active";} ?>">
                         <input type="radio" name="BS" value="0" id="BS_solo" <?php if($element['BS']==0){echo "checked";} ?>>
-                        <img src="img/solo.png" style="height:20px;"/>  Solo
+                        <img src="img/solo_blanc.png" style="height:20px;"/>  Solo
                       </label>
                     </div>
                   </div>

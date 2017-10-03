@@ -10,10 +10,13 @@
           <?php echo $message_corps."<br><br>"; ?>
           <?php if(isset($message_url))
           {?>
-            <a href="<?php echo $message_url; ?>" class="btn btn-lg btn-primary">Oui</a>
+            <a href="<?php echo $message_url; ?>" class="btn btn-lg btn-primary">Ok</a>
             <?php
           } ?>
+          <?php if(isset($message_retour))
+          {?>
           <a href="<?php echo $message_retour; ?>" class="btn btn-lg btn-default">Retour</a>
+        <?php } ?>
         </div>
       </div>
     </div>
