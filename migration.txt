@@ -1,0 +1,27 @@
+operations base à faire pour la migration
+
+--- renommer
+type -> CA bool
+T -> TE bool
+B -> BS bool
+afimmat -->immat
+
+---supprimer
+vidéo
+aftype
+ligne
+total
+pilote
+TABLE parachute
+TABLE qualif
+
+--modifier
+
+M Bool1
+
+
+--ajouter
+N Bool
+W Bool
+L Bool
+TABLE aeronef (immat, aftype(8 varchar))

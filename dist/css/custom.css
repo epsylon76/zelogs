@@ -1,0 +1,15 @@
+.panel
+{
+	margin-top:15px;
+}
+
+body{
+	font-family:"Open Sans";
+}
+
+.navbar-brand{
+	font-family:"Lato";
+	font-weight:bold;
+	font-size:35px!important;
+	color:#555;
+}
