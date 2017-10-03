@@ -14,10 +14,12 @@ total
 pilote
 TABLE parachute
 TABLE qualif
+membre.preftype
 
 --modifier
 
 M Bool1
+membre.token varchar(12)
 
 
 --ajouter

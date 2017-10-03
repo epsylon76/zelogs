@@ -29,5 +29,41 @@ class membres
     $donnees=$query->fetch(PDO::FETCH_ASSOC);
     return $donnees;
   }
+  function donnees_membre_email($email)
+  {
+    global $DB_con;
+    $requete="SELECT * from membre where mail='".$email."'";
+    $query=$DB_con->query($requete);
+    $donnees=$query->fetch(PDO::FETCH_ASSOC);
+    return $donnees;
+  }
+
+  function enregistrer_membre($post)
+  {
+    $length = 12;
+    $token = bin2hex(openssl_random_pseudo_bytes($length));
+    global $DB_con;
+    $pass=md5($post['pass']);
+    $requete="INSERT INTO membre
+    (
+      `id`,
+      `login`,
+      `mail`,
+      `pass_md5`,
+      `token`,
+      `timestamp`)
+      VALUES
+      (
+        NULL,
+        '{$post['login']}',
+        '{$post['email']}',
+        '{$pass}',
+        '{$token}',
+        NOW()
+      )
+    ";
+    //echo $requete;
+    $DB_con->query($requete);
+  }
 
 }
