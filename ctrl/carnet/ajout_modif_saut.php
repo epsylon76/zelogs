@@ -20,13 +20,13 @@ if(isset($_POST['nb'])) //si des données POST ont été envoyées, on procède 
   {
         //modification
         $carnet->modif_saut($_POST);
-        
+
         $message_titre="Modification effectuée";
         $message_corps="Modification de l'élément effecutée";
         $message_couleur="success";
         $message_retour="zelogsv3.php?page=carnet";
 
-        include_once 'vue/message.php';
+        include_once 'vue/modules/message.php';
   }
   else
   {
@@ -38,7 +38,7 @@ if(isset($_POST['nb'])) //si des données POST ont été envoyées, on procède 
         $message_couleur="success";
         $message_retour="zelogsv3.php?page=carnet";
 
-        include_once 'vue/message.php';
+        include_once 'vue/modules/message.php';
   }
 }
 else //pas de POST
@@ -104,6 +104,7 @@ else //pas de POST
   }
   include_once 'vue/carnet/ajout_modif_saut.php';
 }
+
 
 
 

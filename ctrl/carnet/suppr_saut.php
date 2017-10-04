@@ -28,7 +28,7 @@ if(isset($_GET['element']) && $carnet->item_ownedby_membre($_GET['element'],$_SE
     $message_retour="zelogsv3.php?page=carnet";
     $message_url="zelogsv3.php?page=suppr_saut&element={$_GET['element']}&go=go";
   }
-  include_once 'vue/message.php';
+  include_once 'vue/modules/message.php';
 }
 else {
   //retour à la page carnet

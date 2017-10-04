@@ -19,6 +19,9 @@ crossorigin="anonymous"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.min.js"></script>
+<!--parsley form validation -->
+<script src="dist/js/parsley.min.js"></script>
+<script src="dist/js/parsley_fr.js"></script>
 
 <script src="dist/js/loading.js"></script>
 
@@ -27,6 +30,7 @@ $( ".pdfbutton" ).click(function() {
 $.showLoading({allowHide: false});
 });
 </script>
+
 
 
 </body>

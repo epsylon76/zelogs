@@ -20,6 +20,7 @@ membre.preftype
 
 M Bool1
 membre.token varchar(12)
+Item.lieu(20)
 
 
 --ajouter

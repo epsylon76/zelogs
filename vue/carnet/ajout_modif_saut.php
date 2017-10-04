@@ -8,7 +8,7 @@
           <?php echo $titre_panel; ?>
         </div>
         <div class="panel-body">
-          <form role="form" method="post" class="form-horizontal">
+          <form role="form" method="post" class="form-horizontal" name="ajout_modif" data-parsley-validate>
             <div class="row">
               <!-- inputs cachés -->
               <input type="hidden" name="membreid" value="<?php echo $membreid; ?>">
@@ -30,7 +30,7 @@
                 <div class="form-group">
                   <label class="col-sm-2">Lieu</label>
                   <div class="col-sm-7">
-                    <input class="form-control" type="text" list="lieu" value="<?php echo $element['lieu'];?>" name="lieu" id="lieu">
+                    <input class="form-control" type="text" list="lieu" required data-parsley-length="[2, 12]" value="<?php echo $element['lieu'];?>" name="lieu" id="lieu">
                   </div>
                 </div>
 
@@ -78,14 +78,14 @@
                 <div class="form-group">
                   <label class="col-sm-2">Immat Aéronef</label>
                   <div class="col-sm-7">
-                    <input type="text" class="form-control" list="immat" name="immat" value="<?php echo $element['immat'];?>" id="immat">
+                    <input type="text" class="form-control" list="immat" name="immat" data-parsley-length="[2, 6]" value="<?php echo $element['immat'];?>" id="immat">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2">Parachute</label>
                   <div class="col-sm-7">
-                    <input list="parachute" class="form-control" type="text" name="principale" value="<?php echo $element['principale'];?>" id="principale">
+                    <input list="parachute" class="form-control" type="text" name="principale" data-parsley-length="[4, 12]" value="<?php echo $element['principale'];?>" id="principale">
                   </div>
                 </div>
 
@@ -180,7 +180,7 @@
                       <label class="col-sm-2">Temps de vol</label>
 
                       <div class="col-sm-3">
-                        <input type='text' name='tpsvol' class='form-control' value="20" value="<?php echo $element['tpsvol'];?>" id="tpsvol" required>
+                        <input type="number" min="1" max="600" name='tpsvol' class='form-control' value="20" value="<?php echo $element['tpsvol'];?>" id="tpsvol" required>
                       </div>
                     </div>
 
@@ -212,4 +212,5 @@
   </div>
   <!-- /.row -->
 </div>
+
 <!-- /#page-wrapper -->

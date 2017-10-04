@@ -209,7 +209,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Préférences</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="zelogsv3.php?page=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="zelogsv3.php?page=logout"><i class="fa fa-sign-out fa-fw"></i> Déconnecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
