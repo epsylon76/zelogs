@@ -7,3 +7,4 @@ Impression au format pro
 Rappel des échéances  
 Statistiques de sauts  
 Arrêt de carnet  
+Compter sauts avec arguments
