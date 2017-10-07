@@ -30,7 +30,7 @@
                 echo "<td>{$ligne['id']}</td>";
                 echo "<td>{$ligne['login']}</td>";
                 echo "<td>{$ligne['mail']}</td>";
-                echo "<td>".compte_sauts($ligne['id'],0,0,0)."</td>";
+                echo "<td>".$carnet->compte_sauts($ligne['id'],0,0,0)."</td>";
                 echo "<td>{$ligne['timestamp']}</td>";
                 echo "</tr>";
 

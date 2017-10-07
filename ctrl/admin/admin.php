@@ -21,4 +21,4 @@ include_once 'vue/admin/admin.php';
 
 
 include_once 'vue/foot.php';
-include_once 'vue/modules/datatablesscripts.php';
+include_once 'vue/admin/scripts_admin.php';

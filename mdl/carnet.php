@@ -200,6 +200,12 @@ class carnet
         }
         return $data[0];
       }
+      function compte_entre($array)
+      {
+        foreach($ARRAY as $key=>$value)
+        {$$key = $value;}
+        
+      }
 
       // FIN CLASSE CARNET
     }

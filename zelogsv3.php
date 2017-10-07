@@ -67,6 +67,10 @@ else //onpeut afficher tout autre page
       include_once 'ctrl/tuto.php';
       break;
 
+      case 'compter':
+      include_once 'ctrl/compter.php';
+      break;
+
     }
   }
 

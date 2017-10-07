@@ -228,7 +228,7 @@
                             <a href="zelogsv3.php?page=carnet"><i class="fa fa-table fa-fw"></i> Carnet</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Remplacer</a>
+                            <a href="zelogsv3.php?page=compter"><i class="fa fa-percent" aria-hidden="true"></i> Compter</a>
                         </li>
 
                     </ul>
