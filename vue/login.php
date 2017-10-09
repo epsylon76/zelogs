@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="login-panel panel panel-default">
+    <div class="col-md-4">
+      <div class="login-panel panel panel-primary">
         <div class="panel-heading">
           <img src="img/voile.png" height="30px" width="30px" /><b>ZELOGS</b>
         </div><!-- /panel-heading -->
@@ -29,7 +29,7 @@
             </div>
             <div class="row">
               <div class="col-xs-8">
-                <a href="register.html" class="text-center">s'enregistrer</a>
+                <a href="register.html" class="btn btn-small btn-default">s'enregistrer</a>
               </div><!-- /.col -->
               <div class="col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat" name="connexion">Skydive !</button>
@@ -40,6 +40,23 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-6">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+          NEWS
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>Nouvelle interface !</li>
+            <li>Choisissez la date de départ du PDF de carnet</li>
+            <li>Champ de recherche dans tout le carnet</li>
+            <li>Base de données des aéronefs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

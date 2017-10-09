@@ -200,11 +200,51 @@ class carnet
         }
         return $data[0];
       }
-      function compte_entre($array)
+
+      function comptage($array, $membreid) //fonction de comptage de la page compter
       {
-        foreach($ARRAY as $key=>$value)
-        {$$key = $value;}
-        
+        global $DB_con;
+        $requete="SELECT SUM(nb) from Item where membreid=".$membreid;
+        $requete=$requete." AND date Between '".$_POST['dated']."' AND '".$_POST['datef']."'";
+        if(!empty($_POST['lieu'])){$requete=$requete." AND lieu = \"".$_POST['lieu']."\"";}
+        if(!empty($_POST['immat'])){$requete=$requete." AND immat = \"".$_POST['immat']."\"";}
+        if(!empty($_POST['principale'])){$requete=$requete." AND principale = \"".$_POST['principale']."\"";}
+        if(!empty($_POST['hauteur']) && !empty($_POST['signe'])){$requete=$requete." AND hauteur ".$_POST['signe'].$_POST['hauteur'];}
+        if(!empty($_POST['bisolo'])){$requete=$requete." AND BS = ".$_POST['bisolo'];}
+        if(!empty($_POST['travailent'])){$requete=$requete." AND TE = ".$_POST['travailent'];}
+        if(!empty($_POST['special'])){$requete=$requete." AND ".$_POST['special']." = 1";}
+        $query=$DB_con->query($requete);
+        $result=$query->fetch();
+        $result = $result[0];
+        return $result;
+      }
+      //SECTION select options
+
+      function options_immat($membreid)
+      {
+        global $DB_con;
+        $requete="SELECT immat, sum(nb) as total from Item where membreid = ".$membreid." group by immat order by total desc";
+        $query=$DB_con->query($requete);
+        $lignes=$query->fetchAll();
+        return $lignes;
+      }
+
+      function options_lieux($membreid)
+      {
+        global $DB_con;
+        $requete="SELECT lieu, sum(nb) as total from Item where membreid = ".$membreid." group by lieu order by total desc";
+        $query=$DB_con->query($requete);
+        $lignes=$query->fetchAll();
+        return $lignes;
+      }
+
+      function options_principale($membreid)
+      {
+        global $DB_con;
+        $requete="SELECT principale, sum(nb) as total from Item where membreid = ".$membreid." group by principale order by total desc";
+        $query=$DB_con->query($requete);
+        $lignes=$query->fetchAll();
+        return $lignes;
       }
 
       // FIN CLASSE CARNET
