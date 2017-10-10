@@ -1,1 +1,3 @@
 Options -Indexes
+RewriteEngine On
+RewriteRule ^$ zelogsv3.php [L]
