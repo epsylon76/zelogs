@@ -7,20 +7,18 @@ $html='<style>
 table{
   width:100%;
   font-family:courier;
-  font-size:7px;
+  font-size:9px;
   font-weight:bold;
   text-align:center;
   border-collapse:collapse;
-
 }
 td{
     border:0.5px solid black;
+    white-space: nowrap
 }
-
-
-.t1{width:5%;}
-.ts{width:15%}
-.haut2{height:30px;line-height:30px;}
+.t1{width:15mm;}
+.ts{width:25mm;}
+.haut2{height:10mm;line-height:10mm;}
 </style>';
 //pour chaque page on genere tant qu'il reste des lignes à afficher
 //c'est à dire que $cle<=$maxligne

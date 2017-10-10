@@ -4,11 +4,13 @@ $membreid=$_SESSION['membreid'];
 
 include_once 'mdl/carnet.php';
 include_once 'mdl/carnetpdf.php';
+include_once 'mdl/aeronef.php';
 include_once 'fct/globales.php';
 include_once 'fct/calculs.php';
 
 $carnetpdf = new carnetpdf();
 $carnet = new carnet();
+$aeronef = new aeronef();
 
 if(isset($_GET['date_debut']))
 {
@@ -23,6 +25,16 @@ if($date_debut<date_premier_saut($membreid)){$date_debut=date_premier_saut($memb
 if($date_debut>date_dernier_saut($membreid)){$date_debut=date_dernier_saut($membreid);}
 //on definit le numero de ligne qui commence la premiere page en fontion de la date
 $cle = num_array_ligne($lignes, $date_debut);
+//on definit un emplacement d'array si l'immat existe dans aeronef
+foreach($lignes as $key => $ligne)
+{
+  if($aeronef->af_present($ligne['immat'])==1) //y a il une correspondance ?
+  {
+    //on definit un typeaf
+    $lignes[$key]['aftype']=$aeronef->type($ligne['immat']);
+  }
+}
+
 
 //on met en mémoire le numero de ligne max
 $maxligne=count($lignes);

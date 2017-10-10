@@ -47,12 +47,12 @@ class carnetpdf
     <table>
     <tr>
     <td class="t1"  rowspan="2">Date</th>
-    <td class="t1"   rowspan="2">Fonction à bord</th>
+    <td class="t1"   rowspan="2">Fonction</th>
     <td class="t1"  rowspan="2">Lieu</th>
     <td class="t2" colspan="2" >Aéronef</th>
     <td class="t7" colspan="7">Sauts</th>
     <td class="t1"  rowspan="2">Temps de vol</th>
-    <td rowspan="2" class="ts">Sceau, Signature de l\'autorité habilitée</th>
+    <td rowspan="2" class="ts">Signature de l\'autorité habilitée</th>
     </tr>
 
     <tr>
@@ -73,7 +73,7 @@ class carnetpdf
     <td class="haut2">'.$reports['ORBAS'].'</td>
     <td class="haut2">'.$reports['ORNORM'].'</td>
     <td class="haut2">'.$reports['ORHAUT'].'</td>
-    <td class="haut2">'.$reports['TPSVOL'].'</td>
+    <td class="haut2">'.minutes_mini_trad($reports['TPSVOL']).'</td>
     <td class="haut2"></td>
     </tr>';
     return $html;
@@ -99,13 +99,21 @@ class carnetpdf
         if($lignes[$cle+$i]['hauteur']<=4500 && $lignes[$cle+$i]['hauteur']>=1600){$ORNORM=$ORNORM+$lignes[$cle+$i]['nb'];}
       }
 
+      if(isset($lignes[$cle+$i]['aftype'])) //correspondance entre aftype aeronef
+      {
+        $aftype=$lignes[$cle+$i]['aftype'];
+      }else
+      {
+        $aftype=$lignes[$cle+$i]['immat'];
+      }
+
       $html=$html.'
       <tr>
       <td class="t1 haut2" >'.date_unix_humain($lignes[$cle+$i]['date']).'</td>
-      <td class="t1 haut2" >'.$lignes[$cle+$i]['fct'].'</td>
+      <td class="t1 haut2" >'.trad_fct($lignes[$cle+$i]['fct']).'</td>
       <td class="t1 haut2" >'.$lignes[$cle+$i]['lieu'].'</td>
       <td class="t1 haut2" >'.$lignes[$cle+$i]['immat'].'</td>
-      <td class="t1 haut2" >'.$lignes[$cle+$i]['immat'].'</td>
+      <td class="t1 haut2" >'.$aftype.'</td>
       <td class="t1 haut2" >'.$lignes[$cle+$i]['principale'].'</td>
       <td class="t1 haut2" >'.$lignes[$cle+$i]['hauteur'].'</td>
       <td class="t1 haut2" >'.trad_trav_ent($lignes[$cle+$i]['TE']).'</td>
@@ -189,7 +197,7 @@ class carnetpdf
     <td  class="haut2" rowspan=2>'.$totaux['ORBAS'].'</td>
     <td  class="haut2" rowspan=2>'.$totaux['ORNORM'].'</td>
     <td class="haut2" rowspan=2>'.$totaux['ORHAUT'].'</td>
-    <td class="haut2" rowspan=2>'.$totaux['TPSVOL'].'</td>
+    <td class="haut2" rowspan=2>'.minutes_mini_trad($totaux['TPSVOL']).'</td>
     <td class="haut2" style="border:0px;">TOTAL GENERAL DES SAUTS</td>
     </tr>
     <tr class="haut2">

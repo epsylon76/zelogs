@@ -76,9 +76,13 @@
 
                 echo "<tr class=\"odd gradeX\">";
                 echo "<td>{$ligne['immat']}";
-                if($type=="?" && $ligne['immat']!=""){echo "<a href='zelogsv3.php?page=admin&action=addaf&immat=".$ligne['immat']."' class='pull-right'>+</a>";}
+                echo " <a href='http://www.airport-data.com/aircraft/".$ligne['immat'].".html' target='_blank'><i class='fa fa-search'></i></a>";
+                if($type=="?" && $ligne['immat']!="")
+                {
+                  echo "<a href='zelogsv3.php?page=admin&action=addaf&immat=".$ligne['immat']."' class='pull-right'>+</a>";
+                }
                 echo "</td>";
-                echo "<td>{$ligne['nb']}</td>";
+                echo "<td>{$ligne['tot']}</td>";
                 echo "<td>{$type}</td>";
                 echo "<td>";
                 if($type=="?" && $ligne['immat']!="")

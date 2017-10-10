@@ -112,3 +112,10 @@ function minutes_trad($minutes)
 
   return $h.' Heures '.$m.' minutes';
 }
+
+function minutes_mini_trad($minutes)
+{
+  $h = floor($minutes/60);
+  $m=($minutes % 60);
+  return $h.'h '.$m.'min';
+}

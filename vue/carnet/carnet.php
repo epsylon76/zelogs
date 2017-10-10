@@ -32,17 +32,17 @@
                 $date=date_unix_humain($ligne['date']);
                 $bouton_modif="<a href=\"zelogsv3.php?page=ajout_modif_saut&element={$ligne['itemid']}\"><i class=\"fa fa-edit\"></i></a>";
                 $bouton_suppr="<a href=\"zelogsv3.php?page=suppr_saut&element={$ligne['itemid']}\"><i class=\"fa fa-trash\"></i></a>";
-                $actions="</i><i class=\"fa fa-eye\"></i><i class=\"fa fa-copy\"></i>";
+                $bouton_copier="</i><i class=\"fa fa-copy\"></i>";
 
                 echo "<tr class=\"odd gradeX\">";
                 echo "<td>{$date}</td>";
                 echo "<td>{$ligne['nb']}</td>";
                 echo "<td>{$ligne['lieu']}</td>";
-                echo "<td>{$ligne['immat']}</td>";
+                echo "<td>{$ligne['immat']} <a href='http://www.airport-data.com/aircraft/".$ligne['immat'].".html' target='_blank'><i class='fa fa-search'></i></a></td>";
                 echo "<td>{$ligne['hauteur']}</td>";
                 echo "<td>{$ligne['principale']}</td>";
                 echo "<td>{$type}</td>";
-                echo "<td>{$bouton_modif} {$bouton_suppr} {$actions}</td>";
+                echo "<td>{$bouton_modif} {$bouton_suppr} {$bouton_copier}</td>";
                 echo "</tr>";
 
               }

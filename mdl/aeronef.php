@@ -44,7 +44,7 @@ class aeronef
   function liste_af_items()
   {
     global $DB_con;
-    $requete="SELECT immat , SUM(nb) as nb from Item group by immat order by nb desc";
+    $requete="SELECT immat , SUM(nb) as tot from Item group by immat order by tot desc";
     $query=$DB_con->query($requete);
     $lignes=$query->fetchAll(PDO::FETCH_ASSOC);
     return $lignes;
