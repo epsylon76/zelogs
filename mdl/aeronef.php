@@ -19,6 +19,28 @@ class aeronef
     return $type[0];
   }
 
+  function ajout_table_aeronef($immat)
+  {
+    global $DB_con;
+    $requete="INSERT INTO aeronef ( `immat`, `aftype`) VALUES ('".$immat."', 'Inconnu')";
+    $query=$DB_con->query($requete);
+  }
+
+  function set_immat($immat,$newimmat)
+  {
+    global $DB_con;
+    $requete="UPDATE Item SET immat = '".$newimmat."' where immat = '".$immat."'";
+    $query=$DB_con->query($requete);
+    echo $requete;
+  }
+
+  function set_type($immat,$type)
+  {
+    global $DB_con;
+    $requete="UPDATE aeronef SET aftype = '".$type."' where immat = '".$immat."'";
+    $query=$DB_con->query($requete);
+  }
+
   function liste_af_items()
   {
     global $DB_con;

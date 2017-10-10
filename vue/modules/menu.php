@@ -16,6 +16,10 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+              <li>
+                <a href="zelogsv3.php?page=carnet"><i class="fa fa-table fa-fw"></i> Carnet</a>
+              </li>
+              <!--
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -57,9 +61,9 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-messages -->
+
                 </li>
-                <!-- /.dropdown -->
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -136,9 +140,9 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-tasks -->
+
                 </li>
-                <!-- /.dropdown -->
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -196,19 +200,20 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-alerts -->
+
                 </li>
-                <!-- /.dropdown -->
+            /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Profil</a>
+                      <!--  <li><a href="#"><i class="fa fa-user fa-fw"></i> Profil</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Préférences</a>
                         </li>
                         <li class="divider"></li>
+                      -->
                         <li><a href="zelogsv3.php?page=logout"><i class="fa fa-sign-out fa-fw"></i> Déconnecter</a>
                         </li>
                     </ul>

@@ -5,6 +5,9 @@ type -> CA bool
 T -> TE bool
 B -> BS bool
 afimmat -->immat
+M Bool1
+membre.token varchar(12)
+Item.lieu(20)
 
 ---supprimer
 vidéo
@@ -15,12 +18,6 @@ pilote
 TABLE parachute
 TABLE qualif
 membre.preftype
-
---modifier
-
-M Bool1
-membre.token varchar(12)
-Item.lieu(20)
 
 
 --ajouter

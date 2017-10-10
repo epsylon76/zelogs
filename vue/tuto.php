@@ -42,10 +42,11 @@
         </div>
         <div class="timeline-panel">
           <div class="timeline-heading">
-            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+            <h4 class="timeline-title">Visualisez vos statistiques</h4>
           </div>
           <div class="timeline-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
+            <p>Comparez l'année en cours avec l'année précédente, le nombre de biplaces... dans votre tableau de bord</p>
+            <img src="img/statistiques.png" class="img-responsive"></img>
           </div>
         </div>
       </li>

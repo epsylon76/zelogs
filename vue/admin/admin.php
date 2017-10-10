@@ -61,8 +61,8 @@
                 <th>immat</th>
                 <th>nb</th>
                 <th>type</th>
-                <th>remplacer par</th>
-                <th>time</th>
+                <th>remplacer immat</th>
+                <th>remplacer type</th>
               </tr>
             </thead>
             <tbody>
@@ -72,14 +72,36 @@
               {
 
                 if($aeronef->af_present($ligne['immat']))
-                {$type=$aeronef->type($ligne['immat']);}else{$type="Inconnu";}
+                {$type=$aeronef->type($ligne['immat']);}else{$type="?";}
 
                 echo "<tr class=\"odd gradeX\">";
-                echo "<td>{$ligne['immat']}</td>";
+                echo "<td>{$ligne['immat']}";
+                if($type=="?" && $ligne['immat']!=""){echo "<a href='zelogsv3.php?page=admin&action=addaf&immat=".$ligne['immat']."' class='pull-right'>+</a>";}
+                echo "</td>";
                 echo "<td>{$ligne['nb']}</td>";
                 echo "<td>{$type}</td>";
-                echo "<td></td>";
-                echo "<td></td>";
+                echo "<td>";
+                if($type=="?" && $ligne['immat']!="")
+                {
+                  echo "<form action='zelogsv3.php' method='get'>";
+                  echo "<input type='hidden' name='page' value='admin'/>";
+                  echo "<input type='hidden' name='immat' value='".$ligne['immat']."'/>";
+                  echo "<input type='text' name='newimmat'/>";
+                  echo "<button class='btn btn-success btn-sm' value='submit' >go</button>";
+                  echo "</form>";
+                }
+                echo "</td>";
+                echo "<td>";
+                if($type!="?")
+                {
+                echo "<form action='zelogsv3.php' method='get'>";
+                echo "<input type='hidden' name='page' value='admin'/>";
+                echo "<input type='hidden' name='immat' value='".$ligne['immat']."'/>";
+                echo "<input type='text' name='newtype'/>";
+                echo "<button class='btn btn-success btn-sm' type='submit'>go</button>";
+                echo "</form>";
+              }
+                echo "</td>";
                 echo "</tr>";
 
               }
