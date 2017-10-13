@@ -2,6 +2,7 @@
 <div class="row">
   <div class="container">
     <div class="col-md-12">
+      <a class='btn btn-primary btn-sm' href='zelogsv3.php?page=accueil'>retour</a>
       <div class="panel panel-default">
         <div class="panel-heading">
           Membres
@@ -90,7 +91,7 @@
                   echo "<form action='zelogsv3.php' method='get'>";
                   echo "<input type='hidden' name='page' value='admin'/>";
                   echo "<input type='hidden' name='immat' value='".$ligne['immat']."'/>";
-                  echo "<input type='text' name='newimmat'/>";
+                  echo "<input type='text' size='8' maxlength='8' name='newimmat'/>";
                   echo "<button class='btn btn-success btn-sm' value='submit' >go</button>";
                   echo "</form>";
                 }
@@ -101,7 +102,7 @@
                 echo "<form action='zelogsv3.php' method='get'>";
                 echo "<input type='hidden' name='page' value='admin'/>";
                 echo "<input type='hidden' name='immat' value='".$ligne['immat']."'/>";
-                echo "<input type='text' name='newtype'/>";
+                echo "<input type='text' size='8' maxlength='8' name='newtype'/>";
                 echo "<button class='btn btn-success btn-sm' type='submit'>go</button>";
                 echo "</form>";
               }
