@@ -150,10 +150,10 @@ class carnet
 
         if($ligne['BS']==1)
         {
-          $affichage=$affichage."<img src=\"img/tandem.png\" style=\"height:20px\"/>";
+          $affichage=$affichage."<img src=\"img/tandem.png\" style=\"height:20px ; width:32px\"/>";
         }
         else {
-          $affichage=$affichage."<img src=\"img/solo.png\" style=\"height:20px\"/>";
+          $affichage=$affichage."<img src=\"img/solo.png\" style=\"height:18px; width:32px\"/>";
         }
 
         return $affichage;

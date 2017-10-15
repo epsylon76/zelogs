@@ -158,7 +158,7 @@
               <input class="btn btn-primary" type="submit"value="Compter"></button>
             </form>
 
-            <h1><?php echo $resultat ?></h1>
+            <h1>résultat : <?php echo $resultat ?></h1>
           </div>
         </div>
       </div>

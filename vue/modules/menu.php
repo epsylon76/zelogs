@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="zelogsv3.php?page=accueil">Zelogs V3</a></small style="color:#555">dev</small>
+                <a class="navbar-brand" href="zelogsv3.php?page=accueil">Zelogs</a>
             </div>
             <!-- /.navbar-header -->
 
