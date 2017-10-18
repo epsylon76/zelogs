@@ -1,14 +1,14 @@
-<div id="page-wrapper">
+<div id="page-wrapper" style="padding:4px">
 
   <div class="row" >
-    <div class="col-lg-12">
+    <div class="col-lg-12" >
       <div class="panel panel-primary">
         <div class="panel-heading">
           Carnet
         </div>
 
         <!-- /.panel-heading -->
-        <div class="panel-body">
+        <div class="panel-body" style="padding:4px;">
           <table width="100%" class="table table-striped table-bordered table-hover table-condensed" id="datatables-carnet">
             <thead>
               <tr>
