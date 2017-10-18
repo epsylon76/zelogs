@@ -44,6 +44,6 @@ if (isset($_POST['login']) && isset($_POST['pass']))
 
 
 }
-else {  //si on a pas de variables POSt en entrée, alors on affiche simplement le formulaire
+else {  //si on a pas de variables POSt en entrée, alors on affiche simplement la page
   include_once('vue/login.php');
 }
