@@ -38,7 +38,7 @@
         </div>
       </li>
       <li>
-        <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+        <div class="timeline-badge danger"><i class="fa fa-bar-chart"></i>
         </div>
         <div class="timeline-panel">
           <div class="timeline-heading">
@@ -51,15 +51,19 @@
         </div>
       </li>
       <li class="timeline-inverted">
+        <div class="timeline-badge warning"><i class="fa fa-print"></i>
+        </div>
         <div class="timeline-panel">
           <div class="timeline-heading">
-            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+            <h4 class="timeline-title">Imprimez votre carnet</h4>
           </div>
           <div class="timeline-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
+            <p>Générez les pages de votre carnet de saut au format PDF et imprimez les, tout est automatique</p>
+            <img class="img img-responsive" src="img/page_carnet.png"></img>
           </div>
         </div>
       </li>
+    <!--
       <li>
         <div class="timeline-badge info"><i class="fa fa-save"></i>
         </div>
@@ -111,6 +115,7 @@
           </div>
         </div>
       </li>
+    -->
     </ul>
   </div>
   <!-- /.panel-body -->
