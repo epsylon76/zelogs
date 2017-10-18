@@ -44,6 +44,9 @@ class carnetpdf
   {
     $html='
 
+    <hr>
+    <br>
+    <br>
     <table>
     <tr>
     <td class="t1"  rowspan="2">Date</th>
@@ -209,7 +212,7 @@ class carnetpdf
     <br>
     <br>
     <hr>
-    <br>
+
     ';
     return $html;
   }

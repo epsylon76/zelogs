@@ -19,6 +19,7 @@ td{
 .t1{width:15mm;}
 .ts{width:25mm;}
 .haut2{height:10mm;line-height:10mm;}
+hr{margin-top:0mm;margin-bottom:0mm;}
 </style>';
 //pour chaque page on genere tant qu'il reste des lignes à afficher
 //c'est à dire que $cle<=$maxligne
