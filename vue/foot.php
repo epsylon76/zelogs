@@ -13,9 +13,8 @@ crossorigin="anonymous"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-
+<!-- ChartJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.min.js"></script>

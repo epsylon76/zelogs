@@ -8,3 +8,9 @@ Rappel des échéances
 Statistiques de sauts  
 Arrêt de carnet  
 Compter sauts avec arguments
+
+
+## Externe
+Parsley -> validation des formulaires
+mpdf -> Génération des PDF
+morrisJS -> Graphiques

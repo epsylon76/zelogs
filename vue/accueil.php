@@ -5,16 +5,20 @@
   <div class="row">
 
     <div class="col-sm-9">
-      <div class="panel panel-default">
+
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <i class="fa fa-bar-chart-o fa-fw"></i> Nombre de sauts par mois
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-          <div id="morris-area-chart"></div>
+          <canvas id="graph_annees"></canvas>
         </div>
         <!-- /.panel-body -->
       </div>
+
+
+
     </div>
 
     <div class="col-sm-3">
