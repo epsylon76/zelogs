@@ -71,6 +71,11 @@ else //onpeut afficher tout autre page
       include_once 'ctrl/compter.php';
       break;
 
+      case 'arretpdf':
+      include_once 'ctrl/pdf/arretpdf.php';
+      break;
+
+
     }
   }
 
