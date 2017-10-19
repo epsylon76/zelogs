@@ -2,7 +2,6 @@
 
 set_time_limit(500);
 //on va compter deux tableau avant un changement de page
-$page=1;
 $html='<style>
 table{
   width:100%;
@@ -25,9 +24,5 @@ td{
 
 
 
-  //echo $html;
-  $mpdf->WriteHTML($html);
-  $html='';
-  $cle=$cle+10;
-  //echo $page;
-  $page++;
+  echo $total;
+  //$mpdf->WriteHTML($html);

@@ -2,12 +2,11 @@
 
 $membreid=$_SESSION['membreid'];
 
-include_once 'mdl/carnet.php';
-include_once 'mdl/carnetpdf.php';
+include_once 'mdl/arretpdf.php';
 include_once 'fct/globales.php';
 include_once 'fct/calculs.php';
 
-$carnetpdf = new carnetpdf();
+$arretpdf = new arretpdf();
 $carnet = new carnet();
 
 if(isset($_GET['date_arret']))
@@ -31,4 +30,9 @@ $solo12=0;
 $hdv12=0;
 
 //depuis la premiere date jusqu'a la date d'arret demandée
-$total=$carnet->compte_sauts($membreid,)
+$total=$arretpdf->total($membreid,$date_arret);
+$biplace=$arretpdf->biplaces($membreid,$date_arret);
+$solos=$arretpdf->solos($membreid,$date_arret);
+
+
+include_once 'vue/pdf/arretpdf.php';
