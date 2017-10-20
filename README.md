@@ -11,6 +11,6 @@ Compter sauts avec arguments
 
 
 ## Externe
-Parsley -> validation des formulaires
-mpdf -> Génération des PDF
-morrisJS -> Graphiques
+Parsley -> validation des formulaires  
+Mpdf -> Génération des PDF  
+ChartJS -> Graphiques  
