@@ -75,7 +75,9 @@ else //onpeut afficher tout autre page
       include_once 'ctrl/pdf/arretpdf.php';
       break;
 
-
+      default :
+      include_once('ctrl/accueil.php');
+      break;
     }
   }
 
