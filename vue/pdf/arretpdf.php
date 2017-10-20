@@ -6,35 +6,60 @@ $html='<style>
 table{
   width:100%;
   font-family:courier;
-  font-size:19px;
+  font-size:14px;
   font-weight:bold;
-  text-align:center;
   border-collapse:collapse;
+  border: 2px solid black;
 }
 td{
+    padding:5mm;
     border:0.5px solid black;
-    white-space: nowrap
+    vertical-align:top;
 }
 </style>';
 
-//on calcule de la ligne 0 jusqu'a date_arret c'est à dire jusqu'a $cle
-echo $total;
-echo '<br><br>';
-echo $total12;
-echo '<br><br>';
-echo $biplaces;
-echo '<br><br>';
-echo $biplaces12;
-echo '<br><br>';
-echo $solos;
-echo '<br><br>';
-echo $solos12;
-echo '<br><br>';
-echo $hdv;
-echo '<br><br>';
-echo $hdv12;
-echo '<br><br>';
+$html=$html.
+'
+    <table>
+    <tr>
+      <td colspan=3>
+        <h2>Arrêt de carnet en date du '.date_unix_humain($date_arret).'</h2>
+      </td>
+    </tr>
+
+    <tr style="height:50mm">
+
+      <td style="width:33%">
+        <h4>Global</h4>
+        <hr>
+        Solo '.$solos.'<br>
+        Biplace '.$biplaces.'<br>
+        HDV '.minutes_trad($hdv).'<br>
+        Total '.$total.'<br>
+      </td>
+
+      <td style="width:33%">
+        <h4>12 Derniers Mois</h4>
+        <hr>
+        Solo '.$solos12.'<br>
+        Biplace '.$biplaces12.'<br>
+        HDV '.minutes_trad($hdv12).'<br>
+        Total '.$total12.'<br>
+      </td>
+
+      <td style="width:33%">
+        <h4>Tampon / Signature</h4>
+        <hr>
+      </td>
+
+    </tr>
+  </table>
+';
+
+//echo $html;
 
 
 
-  //$mpdf->WriteHTML($html);
+
+$mpdf->WriteHTML($html);
+$mpdf->Output('carnet.pdf', 'I'); //impress

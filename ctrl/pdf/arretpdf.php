@@ -41,5 +41,7 @@ $hdv=$arretpdf->hdv($membreid,$date_arret);
 $hdv12=$arretpdf->hdv12($membreid,$date_arret);
 
 
+ob_end_clean();//on nettoie l'output pour mpdf
 
+include_once 'vue/pdf/headpdf.php';
 include_once 'vue/pdf/arretpdf.php';

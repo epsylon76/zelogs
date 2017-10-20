@@ -40,7 +40,7 @@ foreach($lignes as $key => $ligne)
 //on met en mémoire le numero de ligne max
 $maxligne=count($lignes);
 
-ob_end_clean();//on nettoie l'output pour tcpdf
+ob_end_clean();//on nettoie l'output pour mpdf
 
 include_once 'vue/pdf/headpdf.php';
 include_once 'vue/pdf/carnetpdf.php';
