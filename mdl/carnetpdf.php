@@ -47,15 +47,17 @@ class carnetpdf
     <hr>
     <br>
     <br>
+    <br>
+    <br>
     <table>
     <tr>
-    <td class="t1"  rowspan="2">Date</th>
-    <td class="t1"   rowspan="2">Fonction</th>
-    <td class="t1"  rowspan="2">Lieu</th>
-    <td class="t2" colspan="2" >Aéronef</th>
-    <td class="t7" colspan="7">Sauts</th>
-    <td class="t1"  rowspan="2">Temps de vol</th>
-    <td rowspan="2" class="ts">Signature de l\'autorité habilitée</th>
+    <td class="t1 haut1"  rowspan="2">Date</th>
+    <td class="t1 haut1"   rowspan="2">Fonction</th>
+    <td class="t1 haut1"  rowspan="2">Lieu</th>
+    <td class="t2 haut1" colspan="2" >Aéronef</th>
+    <td class="t7 haut1" colspan="7">Sauts</th>
+    <td class="t1 haut1"  rowspan="2">Temps<br> de vol</th>
+    <td rowspan="2" class="ts haut1">Signature de l\'autorité<br> habilitée</th>
     </tr>
 
     <tr>
@@ -195,7 +197,8 @@ class carnetpdf
   {
     $html='
     <tr >
-    <td class="haut2" colspan="8" style="border:none;">Total général des Heures de vol</td>
+    <td class="haut2" colspan="4" style="border:none;">Total général des Heures de vol</td>
+    <td class="haut2" colspan="4" style="border:none;"></td>
     <td  class="haut2" rowspan=2>'.$totaux['OA'].'</td>
     <td  class="haut2" rowspan=2>'.$totaux['ORBAS'].'</td>
     <td  class="haut2" rowspan=2>'.$totaux['ORNORM'].'</td>
@@ -204,7 +207,8 @@ class carnetpdf
     <td class="haut2" style="border:0px;">TOTAL GENERAL DES SAUTS</td>
     </tr>
     <tr class="haut2">
-    <td colspan="8" style="border:none;"> '.minutes_trad($general['hdv']).'</td>
+    <td colspan="4" style="border:none;"> '.minutes_trad($general['hdv']).'</td>
+    <td colspan="4" style="border:none;">TOTAUX à REPORTER ...</td>
 
     <td style="border:0px;">'.$general['sauts'].' SAUTS</td>
     </tr>

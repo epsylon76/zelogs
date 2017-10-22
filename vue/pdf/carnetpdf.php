@@ -7,18 +7,19 @@ $html='<style>
 table{
   width:100%;
   font-family:courier;
-  font-size:9px;
+  font-size:10px;
   font-weight:bold;
   text-align:center;
   border-collapse:collapse;
+  height:117mm;
 }
 td{
     border:0.5px solid black;
-    white-space: nowrap
 }
 .t1{width:15mm;}
 .ts{width:25mm;}
-.haut2{height:10mm;line-height:10mm;}
+.haut1{height:7mm;}
+.haut2{height:10mm;}
 hr{margin-top:0mm;margin-bottom:0mm;}
 </style>';
 //pour chaque page on genere tant qu'il reste des lignes à afficher

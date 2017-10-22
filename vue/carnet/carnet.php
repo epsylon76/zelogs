@@ -60,11 +60,20 @@
                 <a class="btn btn-lg btn-success" href="zelogsv3.php?page=ajout_modif_saut"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un saut</a>
                 <hr>
 
-                <form class="form-inline" action="zelogsv3.php" method="get" style="display:block;">
+                <form action="zelogsv3.php" method="get" class="form-inline" name="arretcarnet">
+                  <input type="hidden" name="page" value="arretpdf"/>
+                  <h4>Créer Arrêt de Carnet en date</h4>
+                  <input class="form-control input-lg" type="date" value="<?php echo date('Y').'-01-01';?>" name="date_arret" style="width:200px;">
+                  <button class="btn btn-lg btn-default pdfbutton" type="submit">&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i>  PDF </button>
+                </form>
+
+                <form action="zelogsv3.php" method="get" class="form-inline" name="carnetpdf">
                   <input type="hidden" name="page" value="carnetpdf"/>
+                  <h4>Créer PDF à partir de la date</h4>
                   <input class="form-control input-lg" type="date" value="<?php echo date('Y').'-01-01';?>" name="date_debut" style="width:200px;">
                   <button class="btn btn-lg btn-default pdfbutton" type="submit">&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i>  PDF </button>
                 </form>
+
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@ $(document).ready(function() {
     "info":false,
     "pagingType": "simple_numbers",
     "language":{
-      "url":"https://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+      "url":"dist/datatables_french.json"
     }
   });
 
