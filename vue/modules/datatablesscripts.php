@@ -7,7 +7,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
 
-
 <!-- scripts des datatables -->
 <script>
 $(document).ready(function() {
@@ -17,12 +16,22 @@ $(document).ready(function() {
     "lengthChange": false,
     "displayStart": <?php if(isset($nopage)){echo $nopage;} ?>,
     "scrollX": true,
+    "scrollY":false,
     "paging": true,
     "info":false,
     "pagingType": "simple_numbers",
     "language":{
       "url":"dist/datatables_french.json"
-    }
+    },
+    "columns":[
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      { "orderable": false }
+    ]
   });
 
 

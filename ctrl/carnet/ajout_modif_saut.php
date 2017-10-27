@@ -13,6 +13,7 @@ if(isset($_POST['nb'])) //si des données POST ont été envoyées, on procède 
   if(!isset($_POST['M'])){$_POST['M']=0;}
   if(!isset($_POST['N'])){$_POST['N']=0;}
   if(!isset($_POST['L'])){$_POST['L']=0;}
+  if(!isset($_POST['C'])){$_POST['C']=0;}
   if(!isset($_POST['W'])){$_POST['W']=0;}
 
   //d'abord est ce que cette ligne correspond bien au membre ?
@@ -93,6 +94,7 @@ else //pas de POST
       $element['M']=0;
       $element['N']=0;
       $element['L']=0;
+      $element['C']=0;
       $element['W']=0;
       $element['tpsvol']=20;
       $element['com']="";

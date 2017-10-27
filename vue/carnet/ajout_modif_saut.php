@@ -168,6 +168,9 @@
                           <label class="btn btn-primary <?php if($element['L']){echo "active";} ?>">
                             <input type="checkbox" name="L" value="1" id="L" <?php if($element['L']){echo "checked";} ?>></input>Largage
                           </label>
+                          <label class="btn btn-primary <?php if($element['C']){echo "active";} ?>">
+                            <input type="checkbox" name="C" value="1" id="C" <?php if($element['C']){echo "checked";} ?>></input>Compétition
+                          </label>
                           <label class="btn btn-primary <?php if($element['W']){echo "active";} ?>">
                             <input type="checkbox" name="W" value="1" id="W" <?php if($element['W']){echo "checked";} ?>></input>Wingsuit
                           </label>

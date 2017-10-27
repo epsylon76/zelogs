@@ -15,12 +15,11 @@
                 <thead>
                   <tr>
                     <th>date</th>
-                    <th>Nb</th>
+                    <th>type & Nb</th>
                     <th>Lieu</th>
                     <th>Aéronef</th>
                     <th>Hauteur</th>
                     <th>Parachute</th>
-                    <th>Type</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -32,19 +31,19 @@
                     $type=$carnet->icones_type_saut($ligne['itemid']);
 
                     $date=date_unix_humain($ligne['date']);
-                    $bouton_modif="<a href=\"zelogsv3.php?page=ajout_modif_saut&element={$ligne['itemid']}\"><i class=\"fa fa-edit\"></i></a>";
-                    $bouton_suppr="<a href=\"zelogsv3.php?page=suppr_saut&element={$ligne['itemid']}\"><i class=\"fa fa-trash\"></i></a>";
-                    $bouton_copier="</i><i class=\"fa fa-copy\"></i>";
+                    $actions='<a href="zelogsv3.php?page=ajout_modif_saut&element='.$ligne['itemid'].'"><i class="fa fa-edit"></i></a>
+                              <a href="zelogsv3.php?page=suppr_saut&element='.$ligne['itemid'].'"><i class="fa fa-trash"></i></a>
+                              <a href="#"></i><i class="fa fa-copy"></i></a>';
 
                     echo "<tr class=\"odd gradeX\">";
                     echo "<td>{$date}</td>";
-                    echo "<td>{$ligne['nb']}</td>";
+                    echo "<td>{$type} <span class='pull-right' style='margin-right:10px;'>{$ligne['nb']}</span></td>";
                     echo "<td>{$ligne['lieu']}</td>";
                     echo "<td>{$ligne['immat']} <a href='http://www.airport-data.com/aircraft/".$ligne['immat'].".html' target='_blank'><i class='fa fa-search'></i></a></td>";
                     echo "<td>{$ligne['hauteur']}</td>";
                     echo "<td>{$ligne['principale']}</td>";
-                    echo "<td>{$type}</td>";
-                    echo "<td>{$bouton_modif} {$bouton_suppr} {$bouton_copier}</td>";
+                    echo "<td>{$actions}</td>";
+                    //echo "<td>{$bouton_modif} {$bouton_suppr} {$bouton_copier}</td>";
                     echo "</tr>";
 
                   }
@@ -73,7 +72,7 @@
                   <input class="form-control" type="date" value="<?php echo date('Y').'-01-01';?>" name="date_debut" style="width:200px;">
                   <button class="btn btn-default pdfbutton" type="submit">&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i>  PDF </button>
                   <br>
-                  <small>La création peut prendre 45 secondes</small>
+                  <small class="text-warning">La création peut prendre 45 secondes</small>
                 </form>
 
               </div>
