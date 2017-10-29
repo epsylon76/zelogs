@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                   <label class="col-sm-2">Nombre</label>
-                  <div class="col-sm-3">
+                  <div class="col-sm-7">
                     <input class="form-control" type="number" min="1" max="700" value="<?php echo $element['nb'];?>" name="nb" required>
                   </div>
                 </div>

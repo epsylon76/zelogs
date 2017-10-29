@@ -6,7 +6,7 @@
 body{
 	font-family:"Open Sans";
 	color : #555!important;
-	
+
 }
 
 .navbar-brand{
@@ -14,4 +14,11 @@ body{
 	font-weight:bold;
 	font-size:35px!important;
 	color:#555;
+}
+
+.parsley-errors-list{
+	margin-bottom:0px!important;
+}
+.parsley-required{
+	color:red;
 }
