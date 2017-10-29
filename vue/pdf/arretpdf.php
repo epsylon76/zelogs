@@ -20,6 +20,10 @@ td{
 
 $html=$html.
 '
+<br>
+<br>
+<br>
+<br>
     <table>
     <tr>
       <td colspan=3>
@@ -34,7 +38,7 @@ $html=$html.
         <hr>
         Solo '.$solos.'<br>
         Biplace '.$biplaces.'<br>
-        HDV '.minutes_trad($hdv).'<br>
+        '.minutes_trad($hdv).'<br>
         Total '.$total.'<br>
       </td>
 
@@ -43,7 +47,7 @@ $html=$html.
         <hr>
         Solo '.$solos12.'<br>
         Biplace '.$biplaces12.'<br>
-        HDV '.minutes_trad($hdv12).'<br>
+        '.minutes_trad($hdv12).'<br>
         Total '.$total12.'<br>
       </td>
 
@@ -54,6 +58,9 @@ $html=$html.
 
     </tr>
   </table>
+  <br>
+  <br>
+  <hr>
 ';
 
 //echo $html;
