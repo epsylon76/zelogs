@@ -33,7 +33,7 @@
                     $date=date_unix_humain($ligne['date']);
                     $actions='<a href="zelogsv3.php?page=ajout_modif_saut&element='.$ligne['itemid'].'"><i class="fa fa-edit"></i></a>
                               <a href="zelogsv3.php?page=suppr_saut&element='.$ligne['itemid'].'"><i class="fa fa-trash"></i></a>
-                              <a href="#"></i><i class="fa fa-copy"></i></a>';
+                              <a href="zelogsv3.php?page=ajout_modif_saut&copie='.$ligne['itemid'].'"></i><i class="fa fa-copy"></i></a>';
 
                     echo "<tr class=\"odd gradeX\">";
                     echo "<td>{$date}</td>";

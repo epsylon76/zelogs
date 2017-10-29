@@ -7,7 +7,9 @@ $carnet = new carnet();
 
 $membreid=$_SESSION['membreid'];
 
-if(isset($_POST['nb'])) //si des données POST ont été envoyées, on procède à l'ajout ou la modif dans la base
+//si des données POST ont été envoyées, on procède à l'ajout ou la modif dans la base
+
+if(isset($_POST['nb']))
 {
   //si les checkbox sont non cochées on met la val à 0
   if(!isset($_POST['M'])){$_POST['M']=0;}
@@ -19,27 +21,27 @@ if(isset($_POST['nb'])) //si des données POST ont été envoyées, on procède 
   //d'abord est ce que cette ligne correspond bien au membre ?
   if(isset($_POST['element']) && $carnet->item_ownedby_membre($_POST['element'],$_SESSION['membreid']))
   {
-        //modification
-        $carnet->modif_saut($_POST);
+    //modification
+    $carnet->modif_saut($_POST);
 
-        $message_titre="Modification effectuée";
-        $message_corps="Modification de l'élément effecutée";
-        $message_couleur="success";
-        $message_retour="zelogsv3.php?page=carnet";
+    $message_titre="Modification effectuée";
+    $message_corps="Modification de l'élément effecutée";
+    $message_couleur="success";
+    $message_retour="zelogsv3.php?page=carnet";
 
-        include_once 'vue/modules/message.php';
+    include_once 'vue/modules/message.php';
   }
   else
   {
-        //ajout
-        $carnet->ajout_saut($_POST);
+    //ajout
+    $carnet->ajout_saut($_POST);
 
-        $message_titre="Ajout effectué";
-        $message_corps="Ajout de l'élément effecutée";
-        $message_couleur="success";
-        $message_retour="zelogsv3.php?page=carnet";
+    $message_titre="Ajout effectué";
+    $message_corps="Ajout de l'élément effecutée";
+    $message_couleur="success";
+    $message_retour="zelogsv3.php?page=carnet";
 
-        include_once 'vue/modules/message.php';
+    include_once 'vue/modules/message.php';
   }
 }
 else //pas de POST
@@ -52,24 +54,25 @@ else //pas de POST
   {
     //MODIF saut
     $itemid=$_GET['element'];
-
     $titre_panel="<i class=\"fa fa-edit\"></i> Modification élément";
     //d'abord est ce que cette ligne correspond bien au membre ?
     if($carnet->item_ownedby_membre($itemid,$_SESSION['membreid']))
     {
       //rentrer valeurs du saut en values
       $element=$carnet->ligne_carnet($itemid);
-
     }
     else
     {
+      echo "l'élément n'appartient pas au membre";
       //retour à la page carnet à cause de l'erreur
-
     }
   }
-  else //AJOUT SAUT
+
+  if(!isset($_GET['element']) || !isset($_GET['copie'])) //AJOUT SAUT
   {
     $titre_panel="<i class=\"fa fa-plus\"></i> Ajout Saut";
+
+
     $dernierelement=$carnet->dernier_element($membreid);
     if($dernierelement)
     {
@@ -99,13 +102,27 @@ else //pas de POST
       $element['tpsvol']=20;
       $element['com']="";
     }
-    //$element=$carnet->ligne_carnet($dernierelement);
-    //récupération de valeurs pour l'ajout, soit aucune référence et on prend le dernier ajout
-    //soit on a une référence de copie et on prend ces éléments
-    //la fonction appelée le fera selon si on renseigne la derniere variable ou Non
-  }
-  include_once 'vue/carnet/ajout_modif_saut.php';
+  }//!!!AJOUT SAUT
+
+  if(isset($_GET['copie'])){ //COPIE SAUT
+    //d'abord est ce que cette ligne correspond bien au membre ?
+    if($carnet->item_ownedby_membre($_GET['copie'],$_SESSION['membreid']))
+    {
+      //rentrer valeurs du saut en values
+      $element=$carnet->ligne_carnet($_GET['copie']);
+      //remettre à zéro la date et le nombre
+      $element['date']='';
+      $element['nb']='';
+    }
+  }//!!!COPIE SAUT
+
+  //$element=$carnet->ligne_carnet($dernierelement);
+  //récupération de valeurs pour l'ajout, soit aucune référence et on prend le dernier ajout
+  //soit on a une référence de copie et on prend ces éléments
+  //la fonction appelée le fera selon si on renseigne la derniere variable ou Non
 }
+include_once 'vue/carnet/ajout_modif_saut.php';
+
 
 
 

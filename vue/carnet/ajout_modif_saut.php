@@ -23,21 +23,21 @@
                   <label class="col-sm-2">Date</label>
                   <div class="col-sm-7">
 
-                    <input class="form-control" type="date" value="<?php echo $element['date'];?>" name="date">
+                    <input class="form-control" type="date" value="<?php echo $element['date'];?>" name="date" required>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2">Lieu</label>
                   <div class="col-sm-7">
-                    <input class="form-control" type="text" list="lieu" required data-parsley-length="[2, 12]" value="<?php echo $element['lieu'];?>" name="lieu" id="lieu">
+                    <input class="form-control" type="text" list="lieu" required data-parsley-length="[2, 12]" value="<?php echo $element['lieu'];?>" name="lieu" id="lieu" required>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2">Nombre</label>
                   <div class="col-sm-3">
-                    <input class="form-control" type="number" min="1" max="700" value="<?php echo $element['nb'];?>" name="nb">
+                    <input class="form-control" type="number" min="1" max="700" value="<?php echo $element['nb'];?>" name="nb" required>
                   </div>
                 </div>
 
@@ -71,21 +71,21 @@
                 <div class="form-group">
                   <label class="col-sm-2">Hauteur</label>
                   <div class="col-sm-7">
-                    <input class="form-control" type="number" min="1" max="30000" value="<?php echo $element['hauteur'] ?>" name="hauteur" id="hauteur">
+                    <input class="form-control" type="number" min="1" max="30000" value="<?php echo $element['hauteur'] ?>" name="hauteur" id="hauteur" required>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2">Immat Aéronef</label>
                   <div class="col-sm-7">
-                    <input type="text" class="form-control" list="immat" name="immat" data-parsley-length="[2, 6]" value="<?php echo $element['immat'];?>" id="immat">
+                    <input type="text" class="form-control" list="immat" name="immat" data-parsley-length="[2, 6]" value="<?php echo $element['immat'];?>" id="immat" required>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-2">Parachute</label>
                   <div class="col-sm-7">
-                    <input list="parachute" class="form-control" type="text" name="principale" data-parsley-length="[4, 12]" value="<?php echo $element['principale'];?>" id="principale">
+                    <input list="parachute" class="form-control" type="text" name="principale" data-parsley-length="[4, 12]" value="<?php echo $element['principale'];?>" id="principale" required>
                   </div>
                 </div>
 
