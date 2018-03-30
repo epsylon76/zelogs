@@ -3,7 +3,7 @@
 //retourne le nombre de sauts par mois dans l'année demandée
 function nbsautsmois($annee)
 {
-  for($m=1; $m<=12; $m+1)
+  for($m=1; $m<=12; $m++)
   {
     global $DB_con;
 
@@ -14,13 +14,10 @@ function nbsautsmois($annee)
     AND YEAR(date)="'.$annee.'"
     AND membreid="'.$_SESSION['membreid'].'"
     ');
-
+    
     $recap = $sql->fetch();
-
     $recapsaut[$m]=$recap[0];
     if($recapsaut[$m]<="0"){$recapsaut[$m]="0";}
-    //echo "|".$recapsaut[$m];
-    $m++;
   }
   return $recapsaut;
 }

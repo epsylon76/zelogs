@@ -64,6 +64,7 @@ p{color:white;}
         </div>
         <div class="panel-body">
           <ul>
+            <li>Ajout de la fonction COPIER</li>
             <li>Nouvelle interface !</li>
             <li>Choisissez la date de départ du PDF</li>
             <li>Champ de recherche dans tout le carnet</li>

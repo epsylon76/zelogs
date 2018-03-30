@@ -209,13 +209,13 @@ class carnet
         global $DB_con;
         $requete="SELECT SUM(nb) from Item where membreid=".$membreid;
         $requete=$requete." AND date Between '".$_POST['dated']."' AND '".$_POST['datef']."'";
-        if(!empty($_POST['lieu'])){$requete=$requete." AND lieu = \"".$_POST['lieu']."\"";}
-        if(!empty($_POST['immat'])){$requete=$requete." AND immat = \"".$_POST['immat']."\"";}
-        if(!empty($_POST['principale'])){$requete=$requete." AND principale = \"".$_POST['principale']."\"";}
-        if(!empty($_POST['hauteur']) && !empty($_POST['signe'])){$requete=$requete." AND hauteur ".$_POST['signe'].$_POST['hauteur'];}
-        if(!empty($_POST['bisolo'])){$requete=$requete." AND BS = ".$_POST['bisolo'];}
-        if(!empty($_POST['travailent'])){$requete=$requete." AND TE = ".$_POST['travailent'];}
-        if(!empty($_POST['special'])){$requete=$requete." AND ".$_POST['special']." = 1";}
+        if($_POST['lieu']!=''){$requete=$requete." AND lieu = \"".$_POST['lieu']."\"";}
+        if($_POST['immat']!=''){$requete=$requete." AND immat = \"".$_POST['immat']."\"";}
+        if($_POST['principale']!=''){$requete=$requete." AND principale = \"".$_POST['principale']."\"";}
+        if(($_POST['hauteur']!='') && !empty($_POST['signe'])){$requete=$requete." AND hauteur ".$_POST['signe'].$_POST['hauteur'];}
+        if($_POST['bisolo']!=''){$requete=$requete." AND BS = ".$_POST['bisolo'];}
+        if($_POST['travailent']!=''){$requete=$requete." AND TE = ".$_POST['travailent'];}
+        if($_POST['special']!=''){$requete=$requete." AND ".$_POST['special']." = 1";}
         $query=$DB_con->query($requete);
         $result=$query->fetch();
         $result = $result[0];
