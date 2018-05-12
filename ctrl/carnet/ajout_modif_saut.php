@@ -58,6 +58,7 @@ else //pas de POST
     //d'abord est ce que cette ligne correspond bien au membre ?
     if($carnet->item_ownedby_membre($itemid,$_SESSION['membreid']))
     {
+
       //rentrer valeurs du saut en values
       $element=$carnet->ligne_carnet($itemid);
     }
@@ -68,7 +69,7 @@ else //pas de POST
     }
   }
 
-  if(!isset($_GET['element']) || !isset($_GET['copie'])) //AJOUT SAUT
+  if(!isset($_GET['element']) && !isset($_GET['copie'])) //AJOUT SAUT
   {
     $titre_panel="<i class=\"fa fa-plus\"></i> Ajout Saut";
 

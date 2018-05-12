@@ -164,5 +164,20 @@
       </div>
 
     </div>
+<!-- fin premier panel -->
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <i class="fa fa-calendar fa-fw"></i> Rappels
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   </div>
