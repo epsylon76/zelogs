@@ -6,6 +6,11 @@ include_once 'fct/globales.php';
 include_once 'mdl/carnet.php';
 $carnet= new carnet();
 $lignes=$carnet->lignes_carnet($_SESSION['membreid']);
+//$data = array("draw" => 1, "data" => $lignes);
+//$lignesjson = json_encode($data, true);
+
+$ajax_req = '{membreid :'.$_SESSION['membreid'].'}';
+
 $nopage=count($lignes);
 
 if(($nopage % 10) == 0) //multiple de dix, on remonte 10 lignes plus haut
@@ -19,6 +24,6 @@ else
 
 
 include_once 'vue/modules/menu.php';
-include_once 'vue/carnet/carnet.php';
+include_once 'vue/carnet/carnet_ajax.php';
 include_once 'vue/foot.php';
-include_once 'vue/modules/datatablesscripts.php';
+include_once 'vue/modules/datatablesscripts_ajax.php';
