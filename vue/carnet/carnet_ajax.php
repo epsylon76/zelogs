@@ -11,7 +11,7 @@
         <div class="panel-body" style="padding:4px;">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <table width="100%" class="table table-striped table-bordered table-hover table-condensed" id="datatables-carnet">
+              <table width="100%" class="" id="datatables-carnet">
                 <thead>
                   <tr>
                     <th>date</th>

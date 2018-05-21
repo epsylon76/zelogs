@@ -15,7 +15,7 @@ $i=0;
 foreach($lignes as $ligne)
 {
 
-  $items[$i][0] = date_unix_humain($ligne['date']);
+  $items[$i][0] = '<span style="display:none">'.$ligne['date'].'</span>'.date_unix_humain($ligne['date']);
   $items[$i][1] = $carnet->icones_type_saut($ligne['itemid'])." <span class='pull-right' style='margin-right:10px;'>{$ligne['nb']}</span>";
   $items[$i][2] = $ligne['lieu'];
   $items[$i][3] = $ligne['immat']." <a href='http://www.airport-data.com/aircraft/".$ligne['immat'].".html' target='_blank'><i class='fa fa-search'></i></a>";

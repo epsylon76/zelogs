@@ -17,7 +17,7 @@ crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="dist/js/sb-admin-2.min.js"></script>
+<script src="dist/js/sb-admin-2.js"></script>
 <!--parsley form validation -->
 <script src="dist/js/parsley.min.js"></script>
 <script src="dist/js/parsley_fr.js"></script>
