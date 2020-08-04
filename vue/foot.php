@@ -24,14 +24,6 @@ crossorigin="anonymous"></script>
 
 <script src="dist/js/loading.js"></script>
 
-<script>
-$( ".pdfbutton" ).click(function() {
-$.showLoading({allowHide: false});
-});
-</script>
-
-
-
 </body>
 
 </html>

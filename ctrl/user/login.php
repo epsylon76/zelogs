@@ -13,33 +13,25 @@ if (isset($_POST['login']) && isset($_POST['pass']))
   }
 
   $test_login = $membres->login($_POST['login'],$_POST['pass']);
-
   // si on obtient une réponse, alors l'utilisateur est un membre
   if ($test_login)
   {
-    $donnees_membre = $membres->donnees_membre($_POST['login']);
+    $donnees_membre = $membres->donnees_membre($test_login['id']);
 
     $_SESSION['login'] = $donnees_membre['login'];
     $_SESSION['pass_md5'] = $donnees_membre['pass_md5'];
     $_SESSION['membreid'] = $donnees_membre['id'];
     $_SESSION['timestamp'] = time();
 
+    echo 'succès';
     header('Location: zelogsv3.php',1);
     exit();
   }
-  // si on ne trouve aucune réponse, le visiteur s'est trompé soit dans son login, soit dans son mot de passe
-  elseif ($data[0] == 0)
+  else // si on ne trouve aucune réponse, le visiteur s'est trompé soit dans son login, soit dans son mot de passe
   {
     header('Location: zelogsv3.php?page=login&erreur=compt');
     exit();
   }
-  // sinon, alors la, il y a un gros problème :)
-  else {
-    header('Location: zelogsv3.php?page=login&erreur=1',1);
-    exit();
-  }
-
-
 
 
 

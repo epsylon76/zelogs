@@ -64,11 +64,13 @@ p{color:white;}
         </div>
         <div class="panel-body">
           <ul>
+            <li>Possibilité de login avec l'email</li>
+            <li>Correction d'un bug de calcul</li>
             <li>Ajout de la fonction COPIER</li>
             <li>Nouvelle interface !</li>
             <li>Choisissez la date de départ du PDF</li>
             <li>Champ de recherche dans tout le carnet</li>
-            <li>Base de données des aéronefs</li>
+
           </ul>
         </div>
       </div>

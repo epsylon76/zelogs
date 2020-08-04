@@ -26,6 +26,7 @@
 
   <!-- Custom Fonts -->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script><!--script recaptcha -->
 
 
 </head>
@@ -57,6 +58,13 @@
               <input type="email" class="form-control" placeholder="Votre email" name="email"/>
             </div>
 
+            <div class="form-group">
+
+              <input type="text" class="form-control" placeholder="Quel mois sommes nous ?" name="test"/>
+              <label style="font-size:10px">sans accents ni majuscule</label>
+            </div>
+
+
             <div class="row">
 
               <div class="col-xs-6">
@@ -84,16 +92,15 @@
 
 
 </body>
-</html>
-<!-- /#wrapper -->
 
-<!-- jQuery -->
+
+</html>
+
 <script
 src="https://code.jquery.com/jquery-1.12.4.min.js"
 integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 crossorigin="anonymous"></script>
 
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -109,7 +116,3 @@ crossorigin="anonymous"></script>
 <!--parsley form validation -->
 <script src="dist/js/parsley.min.js"></script>
 <script src="dist/js/parsley_fr.js"></script>
-
-</body>
-
-</html>

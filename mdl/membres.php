@@ -13,22 +13,24 @@ class membres
   function login($login,$pass)
   {
     global $DB_con;
-    $requete='SELECT count(*) as nb FROM membre WHERE login="'.mysql_escape_string($login).'" AND pass_md5="'.mysql_escape_string(md5($pass)).'"';
-    $query=$DB_con->query($requete);
-    $result=$query->fetch();
-    $result=$result[0];
+    $query = $DB_con->prepare("SELECT id FROM membre WHERE login = :login OR mail = :login AND pass_md5 = :pass");
+    $query->bindParam(':login', $login);
+    $query->bindParam(':pass', md5($pass));
+    $query->execute();
 
+    $result = $query->fetch();
     return $result;
   }
 
-  function donnees_membre($login)
+  function donnees_membre($id)
   {
     global $DB_con;
-    $requete="SELECT * from membre where login='".$login."'";
+    $requete="SELECT * from membre where id='".$id."'";
     $query=$DB_con->query($requete);
     $donnees=$query->fetch(PDO::FETCH_ASSOC);
     return $donnees;
   }
+
   function donnees_membre_email($email)
   {
     global $DB_con;

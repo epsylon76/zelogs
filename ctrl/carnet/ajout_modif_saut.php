@@ -1,8 +1,8 @@
 <?php
 
 include_once 'vue/modules/menu.php';
-include_once 'mdl/carnet.php';
 
+include_once 'mdl/carnet.php';
 $carnet = new carnet();
 
 $membreid=$_SESSION['membreid'];
@@ -23,25 +23,13 @@ if(isset($_POST['nb']))
   {
     //modification
     $carnet->modif_saut($_POST);
-
-    $message_titre="Modification effectuée";
-    $message_corps="Modification de l'élément effecutée";
-    $message_couleur="success";
-    $message_retour="zelogsv3.php?page=carnet";
-
-    include_once 'vue/modules/message.php';
+    header('Location: zelogsv3.php?page=carnet');
   }
   else
   {
     //ajout
     $carnet->ajout_saut($_POST);
-
-    $message_titre="Ajout effectué";
-    $message_corps="Ajout de l'élément effecutée";
-    $message_couleur="success";
-    $message_retour="zelogsv3.php?page=carnet";
-
-    include_once 'vue/modules/message.php';
+    header('Location: zelogsv3.php?page=carnet');
   }
 }
 else //pas de POST
@@ -114,6 +102,7 @@ else //pas de POST
       //remettre à zéro la date et le nombre
       $element['date']='';
       $element['nb']='';
+      $titre_panel="<i class=\"fa fa-plus\"></i> Ajout Saut";
     }
   }//!!!COPIE SAUT
 
@@ -121,9 +110,9 @@ else //pas de POST
   //récupération de valeurs pour l'ajout, soit aucune référence et on prend le dernier ajout
   //soit on a une référence de copie et on prend ces éléments
   //la fonction appelée le fera selon si on renseigne la derniere variable ou Non
-}
-include_once 'vue/carnet/ajout_modif_saut.php';
 
+include_once 'vue/carnet/ajout_modif_saut.php';
+}
 
 
 

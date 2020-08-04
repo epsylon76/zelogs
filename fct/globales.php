@@ -16,8 +16,54 @@ function date_unix_humain($date_unix){
   return($jour."/".$mois."/".$an);
 }
 
+function checkCaptcha($test) {
+    $current_month = intval(date('n'));
 
-
+    switch ($current_month) {
+       case 1:
+           $reponse_attendue =  "janvier";
+           break;
+       case 2:
+           $reponse_attendue =  "fevrier";
+           break;
+       case 3:
+           $reponse_attendue =  "mars";
+           break;
+       case 4:
+           $reponse_attendue =  "avril";
+           break;
+       case 5:
+           $reponse_attendue =  "mai";
+           break;
+       case 6:
+           $reponse_attendue =  "juin";
+           break;
+       case 7:
+           $reponse_attendue =  "juillet";
+           break;
+       case 8:
+           $reponse_attendue =  "aout";
+           break;
+       case 9:
+           $reponse_attendue =  "septembre";
+           break;
+       case 10:
+           $reponse_attendue =  "octobre";
+           break;
+       case 11:
+           $reponse_attendue =  "novembre";
+           break;
+       case 12:
+           $reponse_attendue =  "decembre";
+           break;
+   }
+    // Compare numbers
+    if ($reponse_attendue == $test){
+        return true;
+      }else{
+        return false;
+      }
+}
 
 //traduction de travail entrainement
 function trad_trav_ent($te) {
