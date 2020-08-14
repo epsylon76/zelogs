@@ -113,9 +113,3 @@ else //pas de POST
 
 include_once 'vue/carnet/ajout_modif_saut.php';
 }
-
-
-
-
-
-include_once 'vue/foot.php';

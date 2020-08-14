@@ -25,5 +25,4 @@ else
 
 include_once 'vue/modules/menu.php';
 include_once 'vue/carnet/carnet_ajax.php';
-include_once 'vue/foot.php';
 include_once 'vue/modules/datatablesscripts_ajax.php';

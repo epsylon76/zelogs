@@ -44,6 +44,4 @@ $recapsaut2=nbsautsmois($annee_avant);
 
 include_once 'vue/modules/menu.php';
 include_once 'vue/accueil.php';
-
-include_once 'vue/foot.php';
 include_once 'data/graph_annees.php';

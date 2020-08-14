@@ -41,7 +41,4 @@ if(isset($_GET['newtype']) && isset($_GET['immat']))
 
 include_once 'vue/head.php';
 include_once 'vue/admin/admin.php';
-
-
-include_once 'vue/foot.php';
 include_once 'vue/admin/scripts_admin.php';

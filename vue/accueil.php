@@ -1,128 +1,100 @@
+<div class="container">
+  <div class="section">
+    <div class="columns">
 
+      <div class="column is-two-third">
 
-<div id="page-wrapper">
-  <!-- /.row -->
-  <div class="row">
-
-    <div class="col-sm-9">
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <i class="fa fa-bar-chart-o fa-fw"></i> Nombre de sauts par mois
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+          <i class="far fa-chart-bar"></i> Tableau de bord comparatif
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <canvas id="graph_annees"></canvas>
+          </div>
+          <!-- /.panel-body -->
         </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-          <canvas id="graph_annees"></canvas>
-        </div>
-        <!-- /.panel-body -->
+
+
+
       </div>
 
+      <div class="column is-one-third">
+
+        <div class="panel is-info">
+
+          <div class="panel-heading">
+            Total<span class="is-pulled-right"><?php echo $total; ?></span>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_en_cours; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $totaln; ?></div>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_avant; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $total_avant; ?></div>
+          </div>
+
+        </div>
 
 
+        <div class="panel is-danger">
+          <div class="panel-heading">
+            Biplace<span class="is-pulled-right"><?php echo $biplace; ?></span>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_en_cours; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $biplacen; ?></div>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_avant; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $biplace_avant; ?></div>
+          </div>
+        </div>
+
+
+
+        <div class="panel is-success">
+          <div class="panel-heading">
+            Solo<span class="is-pulled-right"><?php echo $solo; ?></span>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_en_cours; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $solon; ?></div>
+          </div>
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_avant; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $solo_avant; ?></div>
+          </div>
+        </div>
+
+
+
+        <div class="panel is-warning">
+          <div class="panel-heading">
+            Travail<span class="is-pulled-right"><?php echo $travail; ?></span>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_en_cours; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $travailn; ?></div>
+          </div>
+
+          <div class="panel-block">
+            <div style="flex:auto"><?php echo $annee_avant; ?></div>
+            <div style="flex:auto; text-align:right;"><?php echo $travail_avant; ?></div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
 
-    <div class="col-sm-3">
-
-      <div class="panel panel-primary">
-        <div class="panel-heading" role="button" data-toggle="collapse" data-target="#panel_total">
-          <span class="pull-left"><h4>Total</h4></span>
-          <span class="pull-right"><h4><?php echo $total; ?></h4></span>
-          <div class="clearfix"></div>
-        </div>
-        <a href="#">
-          <div class="panel-footer collapse" id="panel_total">
-            <div>
-              <span class="pull-left"><?php echo $annee_en_cours;?></span>
-              <span class="pull-right"><?php echo $totaln; ?></span>
-            </div>
-            <div class="clearfix"></div>
-            <div>
-              <span class="pull-left"><?php echo $annee_avant;?></span>
-              <span class="pull-right"><?php echo $total_avant; ?></span>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </a>
-      </div>
-
-      <div class="panel panel-red">
-        <div class="panel-heading" role="button" data-toggle="collapse" data-target="#panel_biplace">
-          <span class="pull-left"><h4>Biplace</h4></span>
-          <span class="pull-right"><h4><?php echo $biplace; ?></h4></span>
-          <div class="clearfix"></div>
-        </div>
-        <a href="#">
-          <div class="panel-footer collapse" id="panel_biplace">
-            <div>
-              <span class="pull-left"><?php echo $annee_en_cours;?></span>
-              <span class="pull-right"><?php echo $biplacen; ?></span>
-            </div>
-            <div class="clearfix"></div>
-            <div>
-              <span class="pull-left"><?php echo $annee_avant;?></span>
-              <span class="pull-right"><?php echo $biplace_avant; ?></span>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </a>
-      </div>
-
-      <div class="panel panel-green">
-        <div class="panel-heading"  role="button" data-toggle="collapse" data-target="#panel_solo">
-          <span class="pull-left"><h4>Solo</h4></span>
-          <span class="pull-right"><h4><?php echo $solo; ?></h4></span>
-          <div class="clearfix"></div>
-        </div>
-        <a href="#">
-          <div class="panel-footer collapse" id="panel_solo">
-            <div>
-              <span class="pull-left"><?php echo $annee_en_cours;?></span>
-              <span class="pull-right"><?php echo $solon; ?></span>
-            </div>
-            <div class="clearfix"></div>
-            <div>
-              <span class="pull-left"><?php echo $annee_avant;?></span>
-              <span class="pull-right"><?php echo $solo_avant; ?></span>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </a>
-      </div>
-
-
-      <div class="panel panel-red">
-        <div class="panel-heading"  role="button" data-toggle="collapse" data-target="#panel_travail">
-          <span class="pull-left"><h4>Travail</h4></span>
-          <span class="pull-right"><h4><?php echo $travail; ?></h4></span>
-          <div class="clearfix"></div>
-        </div>
-        <a href="#">
-          <div class="panel-footer collapse" id="panel_travail">
-            <div>
-              <span class="pull-left"><?php echo $annee_en_cours;?></span>
-              <span class="pull-right"><?php echo $travailn; ?></span>
-            </div>
-            <div class="clearfix"></div>
-            <div>
-              <span class="pull-left"><?php echo $annee_avant;?></span>
-              <span class="pull-right"><?php echo $travail_avant;?></span>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </a>
-      </div>
-
-
-    </div>
-
-
-
-    <!-- /row -->
   </div>
-
-
-
-
-
-
+</div>
 </div>

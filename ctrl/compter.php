@@ -37,4 +37,3 @@ if(isset($_POST['dated']) && isset($_POST['datef']))
 }
 
 include_once 'vue/compter.php';
-include_once 'vue/foot.php';

@@ -1,91 +1,69 @@
 <style>
-body{
-  height:100%!important;
-  background-color:#336699;
-}
-h1{color:white;}
-p{color:white;}
+  body {
+    background-color: #336699;
+  }
 </style>
-  <div class="container">
-    <h1 style="font-family:lato; font-size:70px;"><img src="img/logo_blanc.png" height="100px" width="100px" />Zelogs</h1>
-    <p style="font-size:20px;">Application web de gestion de carnet de sauts pour parachutistes professionnels.</p>
-    <p style="font-size:20px;">Ecriture rapide des lignes, calculs automatiques, comptages et statistiques</p>
-    <p style="font-size:20px;">Imprimez votre carnet au format Papier d'un simple clic</p>
 
-    <div class="row">
-      <div class="col-md-4">
-        <div class="login-panel panel panel-green">
-          <div class="panel-heading">
-            <b>Accès</b>
-          </div><!-- /panel-heading -->
-
-          <div class="panel-body">
-
-            <form action="zelogsv3.php" method="post">
+<section class="hero is-fullheight is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4">
+          <h1 class="title has-text-white">
+            <img src="img/logo_blanc.png" height="150px" width="150px" />
+            Zelogs
+          </h1>
+          <h2 class="subtitle has-text-white">
+            Carnet de sauts pour parachutistes professionnels.
+          </h2>
+        </div>
+        <div class="column is-4">
+          <form action="zelogsv3.php" method="post">
+            <div class="box">
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="email" placeholder="Email" name="login" required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" placeholder="Mot de passe" name="pass" required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </p>
+              </div>
               <?php
-              if(isset($_GET['erreur']))
-              {
-                if($_GET['erreur']=="compt")
-                {echo '<div class="alert alert-danger" role="alert">ERREUR LOGIN, veuillez réessayer</div>';}
-                if($_GET['erreur']=="champ")
-                {echo '<div class="alert alert-danger" role="alert">ERREUR, un des deux champs est vide</div>';}
-
+            if (isset($_GET['erreur'])) {             
+                echo '<div class="field has-text-danger">Erreur, veuillez réessayer</div>';
+            }
+            if (isset($_GET['message'])) {
+              if($_GET['message'] == 'registerok'){             
+              echo '<div class="field has-text-success">Nouveau compte enregistré</div>';
               }
-              ?>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Utilisateur" name="login"/>
-
+          }
+            ?>
+              <div class="field">
+                <p class="control">
+                  <button class="button is-success" type="submit">
+                    Skydive !
+                  </button>
+                  <a class="has-text-weight-light has-text-right is-pulled-right" style="margin-top:20px;" href="new_account.php">
+                    créer un compte
+                  </a>
+                </p>
+                
               </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Mot de Passe" name="pass"/>
-
-              </div>
+              
+           
+              
             </div>
-            <div class="panel-footer">
-              <div class="row">
-                <div class="col-xs-8">
-                  <a href="register.html" class="btn btn-small btn-default">s'enregistrer</a>
-                </div><!-- /.col -->
-                <div class="col-xs-4">
-                  <button type="submit" class="btn btn-primary btn-block btn-flat" name="connexion">Skydive !</button>
-                </div><!-- /.col -->
-              </div>
-            </div>
-
           </form>
         </div>
       </div>
-
-
-    <div class="col-md-6">
-      <div class="login-panel panel panel-red">
-        <div class="panel-heading">
-          NEWS
-        </div>
-        <div class="panel-body">
-          <ul>
-            <li>Possibilité de login avec l'email</li>
-            <li>Correction d'un bug de calcul</li>
-            <li>Ajout de la fonction COPIER</li>
-            <li>Nouvelle interface !</li>
-            <li>Choisissez la date de départ du PDF</li>
-            <li>Champ de recherche dans tout le carnet</li>
-
-          </ul>
-        </div>
-      </div>
     </div>
-
   </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-<?php include 'foot.php';?>
+</section>

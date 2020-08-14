@@ -12,6 +12,7 @@ $(document).ready(function() {
 
 
   $('#datatables-carnet').DataTable({
+    "responsive": true,
     "ajax": {
       "url" :"./mdl/load_carnet_ajax.php",
       "type": "POST",

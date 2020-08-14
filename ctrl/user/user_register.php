@@ -15,39 +15,28 @@ $test_present_email=$membres->donnees_membre_email($email);
 
 if($test_present_membre) //si true c'est qu'il y a un membre qui s'appelle déjà comme ça
 {
-  $message_titre="Déja pris";
-  $message_corps="Cet identifiant est déjà pris, peut être avez vous déjà un compte ?";
-  $message_couleur="warning";
-  $message_retour="register.html";
-  include_once 'vue/modules/message.php';
+  //Cet identifiant est déjà pris, peut être avez vous déjà un compte ?";
+  header('location:new_account.php?erreur=deja');
 }
 elseif ($test_present_email)
 {
-  $message_titre="Déja pris";
-  $message_corps="Cet email est déjà enregistré, peut être avez vous déjà un compte ?";
-  $message_couleur="warning";
-  $message_retour="register.html";
-  include_once 'vue/modules/message.php';
+  //"Cet email est déjà enregistré, peut être avez vous déjà un compte ?";
+  header('location:new_account.php?erreur=email');
 }
 elseif(checkCaptcha($test))
 {
   $membres->enregistrer_membre($_POST);
-  $message_titre="Inscription effectuée";
-  $message_corps="Vous vous êtes inscrit avec l'adresse email ".$_POST['email'];
-  $message_couleur="success";
-  $message_retour="zelogsv3.php";
-  $message_url="zelogsv3.php?page=login";
-  include_once 'vue/modules/message.php';
+  //"Vous vous êtes inscrit avec l'adresse email ".$_POST['email'];
+  header('location:zelogsv3.php?message=registerok');
 }else{
-  $message_titre="Mauvaise réponse";
-  $message_corps="Vous avez mal rempli la question anti robot";
-  $message_couleur="warning";
-  $message_retour="zelogsv3.php";
-  $message_url="zelogsv3.php?page=login";
-  include_once 'vue/modules/message.php';
+  //"Vous avez mal rempli la question anti robot";
+  header('location:new_account.php?erreur=robot');
 }
 
 
 }else {
-  echo "les mots de passe ne correspondent pas";
+ 
+  //"Les mots de passe ne correspondent pas";
+  $message_retour="zelogsv3.php";
+  header('location:new_account.php?erreur=correspondance');
 }

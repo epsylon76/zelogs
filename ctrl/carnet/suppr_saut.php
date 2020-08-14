@@ -15,21 +15,5 @@ if(isset($_GET['element']) && $carnet->item_ownedby_membre($_GET['element'],$_SE
   if(isset($_GET['go'])){
     //supression du saut confirmée
     $carnet->suppr_saut($_GET['element']);
-
-    $message_corps="élément supprimé avec succès";
-    $message_titre="élément supprimé";
-    $message_couleur="success";
-    $message_retour="zelogsv3.php?page=carnet";
-  }else {
-    //message de confirmation
-    $message_titre="Supression élément";
-    $message_corps="Voulez vous vraiment supprimer cette ligne ?";
-    $message_couleur="red";
-    $message_retour="zelogsv3.php?page=carnet";
-    $message_url="zelogsv3.php?page=suppr_saut&element={$_GET['element']}&go=go";
   }
-  include_once 'vue/modules/message.php';
-}
-else {
-  //retour à la page carnet
 }

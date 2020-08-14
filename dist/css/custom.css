@@ -1,24 +1,23 @@
-.panel
-{
-	margin-top:15px;
-}
-
-body{
-	font-family:"Open Sans";
-	color : #555!important;
-
-}
-
 .navbar-brand{
 	font-family:"Lato";
 	font-weight:bold;
-	font-size:35px!important;
 	color:#555;
 }
 
-.parsley-errors-list{
-	margin-bottom:0px!important;
+.titrelogin{
+	font-family:Lato;
 }
-.parsley-required{
-	color:red;
+
+#titre-navbar{
+	font-size:28px;
+	padding-top:0px;
+	padding-bottom:5px;
+}
+
+#datatables-carnet_wrapper{
+	width:100%;
+}
+
+.has-background-info-darker{
+	background-color: #164c6f;
 }
