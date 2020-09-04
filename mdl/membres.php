@@ -40,32 +40,31 @@ class membres
     return $donnees;
   }
 
-  function enregistrer_membre($post)
+  function enregistrer_membre($data)
   {
     $length = 12;
-    $token = bin2hex(openssl_random_pseudo_bytes($length));
     global $DB_con;
-    $pass=md5($post['pass']);
-    $requete="INSERT INTO membre
-    (
+    $pass=md5($data['pass']);
+    $requete= $DB->prepare("INSERT INTO membre (
       `id`,
       `login`,
       `mail`,
       `pass_md5`,
-      `token`,
       `timestamp`)
       VALUES
       (
         NULL,
-        '{$post['login']}',
-        '{$post['email']}',
-        '{$pass}',
-        '{$token}',
+        ':login',
+        ':email',
+        ':pass',
         NOW()
-      )
-    ";
+      )");
+
+      $requete->bindParam(':login', $data['login']);
+      $requete->bindParam(':email', $data['email']);
+      $requete->bindParam(':pass', $data['pass']);
     //echo $requete;
-    $DB_con->query($requete);
+   $requete->execute();
   }
 
 }

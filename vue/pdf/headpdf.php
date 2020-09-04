@@ -1,5 +1,8 @@
 <?php
 // Include the main TCPDF library
-require_once('dist/mpdf/mpdf.php');
-$mpdf = new mPDF('c','', 0, '', 13, 3, 0, 2, 9, 9, 'P');
-$mpdf->useSubstitutions=false;
+require_once 'vendor/autoload.php';
+$mpdf = new \Mpdf\Mpdf([
+    'mode' => 'utf-8',
+    'orientation' => 'P',
+    'format' => 'A4-P'
+]);

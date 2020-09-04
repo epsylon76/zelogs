@@ -4,6 +4,9 @@ set_time_limit(500);
 //on va compter deux tableau avant un changement de page
 $page=1;
 $html='<style>
+@page {
+  margin: 5mm 10mm 5mm 10mm;
+}
 table{
   width:100%;
   font-family:courier;

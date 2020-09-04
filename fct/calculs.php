@@ -25,12 +25,12 @@ function nbsautsmois($annee)
 function date_premier_saut($membreid)
 {
     global $DB_con;
-  $sql = 'SELECT MIN(date)
+  $sql = $DB_con->prepare("SELECT MIN(date)
   FROM `Item`
-  WHERE  `membreid` =  "'.mysql_escape_string($membreid).'"';
-
-  $data = $DB_con->query($sql);
-  $data = $data->fetch(PDO::FETCH_BOTH);
+  WHERE  `membreid` =  :membreid ");
+  $sql->bindParam(':membreid', $membreid);
+  $sql->execute();
+  $data = $sql->fetch();
 
   if($data[0]=="")
   {
@@ -44,12 +44,12 @@ function date_premier_saut($membreid)
 function date_dernier_saut($membreid)
 {
   global $DB_con;
-  $sql = '
-  SELECT MAX(date)
+  $sql = $DB_con->prepare("SELECT MAX(date)
   FROM `Item`
-  WHERE  `membreid` =  "'.mysql_escape_string($membreid).'"';
-  $data = $DB_con->query($sql);
-  $data = $data->fetch(PDO::FETCH_BOTH);
+  WHERE  `membreid` =  :membreid ");
+  $sql->bindParam(':membreid', $membreid);
+  $sql->execute();
+  $data = $sql->fetch();
 
   if($data[0]=="")
   {
@@ -77,7 +77,7 @@ function tps_vol($membreid,$annee)
   $sql = '
   SELECT tpsvol, nb
   FROM `Item`
-  WHERE  `membreid` =  "'.mysql_escape_string($membreid).'"
+  WHERE  `membreid` =  "'.$membreid.'"
   '.$arg1.'
   ';
   $data = $DB_con->prepare($sql);

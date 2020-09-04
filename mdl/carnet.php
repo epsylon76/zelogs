@@ -16,10 +16,11 @@ class carnet
   function premiere_date($membreid)
   {
     global $DB_con;
-    $requete = "SELECT min(date) from Item where membreid = " . $membreid;
-    $query = $DB_con->query($requete);
-    $date = $query->fetch();
-    return $date[0];
+    $requete = $DB_con->prepare("SELECT min(date) from `Item` where `membreid` = :membreid ");
+    $requete->bindParam(':membreid', $membreid);
+    $requete->execute();
+    $date = $requete->fetch();
+    return $date['date'];
   }
 
   function derniere_date($membreid)
@@ -112,6 +113,9 @@ class carnet
   //modifie un saut
   {
     global $DB_con;
+
+    var_dump($array);
+
     $requete = "
         UPDATE `Item`
         SET
@@ -188,7 +192,7 @@ class carnet
     $sql = '
         SELECT SUM(nb)
         FROM `Item`
-        WHERE  `membreid` =  "' . mysql_escape_string($membreid) . '"
+        WHERE  `membreid` =  "' . $membreid . '"
         ' . $arg1 . '
         ' . $arg2 . '
         ';

@@ -46,12 +46,12 @@
 
             <div class="field">
               <label class="label has-text-white">Solo/Biplace</label>
-              <input class="is-checkradio is-white" id="BS_biplace" type="radio" name="BS" <?php if ($element['BS'] == 1) {
+              <input class="is-checkradio is-white" id="BS_biplace" type="radio" name="BS" value="1" <?php if ($element['BS'] == 1) {
                                                                                               echo "checked";
                                                                                             } ?>>
               <label for="BS_biplace" class="has-text-white"><img src="img/tandem_blanc.png" style="height:20px" /> Biplace</label>
 
-              <input class="is-checkradio is-white" id="BS_solo" type="radio" name="BS" <?php if ($element['BS'] == 0) {
+              <input class="is-checkradio is-white" id="BS_solo" type="radio" name="BS" value="0" <?php if ($element['BS'] == 0) {
                                                                                           echo "checked";
                                                                                         } ?>>
               <label for="BS_solo" class="has-text-white"><img src="img/solo_blanc.png" style="height:20px;" /> Solo</label>
@@ -89,12 +89,12 @@
 
             <div class="field">
               <label class="label has-text-white">Travail/Ent.</label>
-              <input class="is-checkradio is-white" id="TE_travail" type="radio" name="TE" <?php if ($element['TE'] == 1) {
+              <input class="is-checkradio is-white" id="TE_travail" type="radio" value="1" name="TE" <?php if ($element['TE'] == 1) {
                                                                                               echo "checked";
                                                                                             } ?>>
               <label for="TE_travail" class="has-text-white"><i class="fa fa-briefcase has-text-white"></i> Travail</label>
 
-              <input class="is-checkradio is-white" id="TE_entrainement" type="radio" name="TE" <?php if ($element['TE'] == 0) {
+              <input class="is-checkradio is-white" id="TE_entrainement" type="radio" name="TE" value="0" <?php if ($element['TE'] == 0) {
                                                                                                   echo "checked";
                                                                                                 } ?>>
               <label for="TE_entrainement" class="has-text-white"><i class="fas fa-smile has-text-white"></i> Entrainement</label>
@@ -235,7 +235,15 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="button is-large is-success">+ AJOUTER</button>
+            <button class="button is-large is-success">
+            <?php
+            if(isset($_GET['element'])){
+              echo "+ MODIFIER";
+            }else{
+              echo "+ AJOUTER";
+            }
+            ?>
+            </button>
           </div>
 
         </div>

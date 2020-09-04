@@ -16,8 +16,9 @@ if(isset($_GET['date_debut']))
 {
   $date_debut=$_GET['date_debut'];
 }else{
-  $date_debut = $carnet->premiere_date($membreid);
+  $date_debut = $carnet->premiere_date($membreid); 
 }
+
 //on met toutes les lignes du carnet en mémoire
 $lignes=$carnet->lignes_carnet($_SESSION['membreid']);
 //il faut contraindre date_debut à être dans les limites du carnet
@@ -38,7 +39,7 @@ foreach($lignes as $key => $ligne)
 
 
 //on met en mémoire le numero de ligne max
-$maxligne=count($lignes);
+$maxligne = count($lignes) - 1; //count != array key
 
 ob_end_clean();//on nettoie l'output pour mpdf
 

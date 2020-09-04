@@ -43,10 +43,6 @@ class carnetpdf
   function debut_table($reports)
   {
     $html='
-
-    <hr>
-    <br>
-    <br>
     <br>
     <br>
     <table>
@@ -142,7 +138,7 @@ class carnetpdf
     $ORNORM=0;
     $ORHAUT=0;
     $TPSVOL=0;
-
+   
     for($i=$cle; $i<=($cle+9); $i++)
     {
       if($i<=$maxligne)
@@ -216,7 +212,6 @@ class carnetpdf
     <br>
     <br>
     <hr>
-
     ';
     return $html;
   }

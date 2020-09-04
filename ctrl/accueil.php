@@ -1,4 +1,6 @@
 <?php
+
+
 //dans l'accueil on a le graph du récap des sauts par année, on va juste déterminer l'année en cours et l'année n-1
 $annee_en_cours=date("Y");
 $annee_avant=$annee_en_cours-1;
