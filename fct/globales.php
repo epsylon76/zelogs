@@ -165,3 +165,10 @@ function minutes_mini_trad($minutes)
   $m=($minutes % 60);
   return $h.'h '.$m.'min';
 }
+
+function pr($data)
+{
+    echo "<pre>";
+    print_r($data); // or var_dump($data);
+    echo "</pre>";
+}

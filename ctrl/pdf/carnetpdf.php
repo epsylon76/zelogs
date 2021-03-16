@@ -21,12 +21,14 @@ if(isset($_GET['date_debut']))
 
 //on met toutes les lignes du carnet en mémoire
 $lignes=$carnet->lignes_carnet($_SESSION['membreid']);
+
 //il faut contraindre date_debut à être dans les limites du carnet
 if($date_debut<date_premier_saut($membreid)){$date_debut=date_premier_saut($membreid);}
 if($date_debut>date_dernier_saut($membreid)){$date_debut=date_dernier_saut($membreid);}
 //on definit le numero de ligne qui commence la premiere page en fontion de la date
+//pr($lignes);
 $cle = num_array_ligne($lignes, $date_debut);
-
+echo $cle;
 //on definit un type d'aéronef si l'immat existe dans la table aeronef
 foreach($lignes as $key => $ligne)
 {
@@ -36,7 +38,6 @@ foreach($lignes as $key => $ligne)
     $lignes[$key]['aftype']=$aeronef->type($ligne['immat']);
   }
 }
-
 
 //on met en mémoire le numero de ligne max
 $maxligne = count($lignes) - 1; //count != array key

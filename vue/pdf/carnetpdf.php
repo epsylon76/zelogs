@@ -28,8 +28,7 @@ hr{margin-top:0mm;margin-bottom:0mm;}
 //pour chaque page on genere tant qu'il reste des lignes à afficher
 //c'est à dire que $cle<=$maxligne
 
-//echo $cle.'  ';
-//echo $maxligne;
+
 
 while($cle<=$maxligne)
 {

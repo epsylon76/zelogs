@@ -2,7 +2,6 @@
 if($_SESSION['membreid']!=16)
 {
   header('location:zelogsv3.php?page=accueil');
-  break;
 }
 
 
