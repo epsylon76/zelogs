@@ -15,7 +15,7 @@ class carnetpdf
     $ORHAUT=0;
     $TPSVOL=0;
 
-    for($i=1; $i<$cle ;$i++)
+    for($i=0; $i<$cle ;$i++)
     {
       //types de saut
       if($lignes[$i]['CA']==0)
