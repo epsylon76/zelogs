@@ -37,7 +37,9 @@ while($cle<=$maxligne)
     $mpdf->AddPage();
     $page=1;
   }
+
   //debut tableau
+
   $reports = $carnetpdf->reports($cle,$lignes);
   $totaux = $carnetpdf->totaux($cle,$lignes,$maxligne);
   $general = $carnetpdf->totaux_generaux($cle,$lignes,$maxligne);

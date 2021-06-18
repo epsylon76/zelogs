@@ -93,19 +93,23 @@ function tps_vol($membreid, $annee)
   return $tps;
 }
 
-function num_array_ligne($lignes, $date)  //retourne la clé du tableau à la premiere date trouvée après la date donnée (numéro de ligne)
+function num_array_ligne($lignes, $date)  //retourne la clé du tableau à la premiere date trouvée à ou après la date donnée (numéro de ligne)
 {
+
   $date = new DateTime($date);
   //echo $date->format('Y-m-d');
 
   $key = array_search($date->format('Y-m-d'), array_column($lignes, 'date'));
+  
+ 
 
-  //essayer une date suivante si elle n'est pas dans le carnet
-  while (!$key) {
-    $date->modify('+1 day');
-    //echo $date->format('Y-m-d');
-    $key = array_search($date->format('Y-m-d'), array_column($lignes, 'date'));
+  if ($date->format('Y-m-d') > $lignes[0]['date']) { //seulement si la date entrée est superieure à la date de la première ligne du carnet
+    while (!$key) {  //essayer une date suivante si elle n'est pas dans le carnet
+      $date->modify('+1 day');
+      //echo $date->format('Y-m-d');
+      $key = array_search($date->format('Y-m-d'), array_column($lignes, 'date'));
+    }
   }
-
+ // echo $key;
   return $key;
 }

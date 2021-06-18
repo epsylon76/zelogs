@@ -28,7 +28,7 @@ if($date_debut>date_dernier_saut($membreid)){$date_debut=date_dernier_saut($memb
 //on definit le numero de ligne qui commence la premiere page en fontion de la date
 //pr($lignes);
 $cle = num_array_ligne($lignes, $date_debut);
-echo $cle;
+//echo $cle;
 //on definit un type d'aéronef si l'immat existe dans la table aeronef
 foreach($lignes as $key => $ligne)
 {
@@ -40,9 +40,9 @@ foreach($lignes as $key => $ligne)
 }
 
 //on met en mémoire le numero de ligne max
-$maxligne = count($lignes) - 1; //count != array key
+$maxligne = (count($lignes) - 1); //count != array key
 
-ob_end_clean();//on nettoie l'output pour mpdf
+//ob_end_clean();//on nettoie l'output pour mpdf
 
 include_once 'vue/pdf/headpdf.php';
 include_once 'vue/pdf/carnetpdf.php';
