@@ -172,7 +172,7 @@ class carnetpdf
     $hdv=0;
     $sauts=0;
 
-    for($i=1; $i<=($cle+9); $i++)
+    for($i=0; $i<=($cle+9); $i++)
     {
       if($i<=$maxligne)
       {
