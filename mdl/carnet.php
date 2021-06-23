@@ -6,9 +6,12 @@ class carnet
   //retourne TOUTES les lignes du carnet du membre
   {
     global $DB_con;
-    $requete = "SELECT * from Item where membreid = " . $membreid . " ORDER BY date, itemid";
-    $query = $DB_con->query($requete);
-    $lignes = $query->fetchAll(PDO::FETCH_ASSOC);
+    $req = $DB_con->prepare("SELECT * from `Item`
+    LEFT JOIN `aeronef` on `aeronef`.`immat` = `Item`.`immat`
+    WHERE membreid = :membreid ORDER BY `date`, `itemid`");
+    $req->bindParam(':membreid', $membreid);
+    $req->execute();
+    $lignes = $req->fetchAll(PDO::FETCH_ASSOC);
     return $lignes;
   }
 

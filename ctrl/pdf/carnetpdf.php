@@ -30,14 +30,7 @@ if($date_debut>date_dernier_saut($membreid)){$date_debut=date_dernier_saut($memb
 $cle = num_array_ligne($lignes, $date_debut);
 //echo $cle;
 //on definit un type d'aéronef si l'immat existe dans la table aeronef
-foreach($lignes as $key => $ligne)
-{
-  if($aeronef->af_present($ligne['immat'])==1) //y a il une correspondance ?
-  {
-    //on definit un typeaf
-    $lignes[$key]['aftype']=$aeronef->type($ligne['immat']);
-  }
-}
+$lignes[$key]['aftype'] = $ligne['immat'];
 
 //on met en mémoire le numero de ligne max
 $maxligne = (count($lignes) - 1); //count != array key

@@ -125,7 +125,7 @@ class carnetpdf
       <td class="t1 haut2" >' . trad_fct($lignes[$cle + $i]['fct']) . '</td>
       <td class="t1 haut2" >' . $lignes[$cle + $i]['lieu'] . '</td>
       <td class="t1 haut2" >' . $lignes[$cle + $i]['immat'] . '</td>
-      <td class="t1 haut2" >' . $aftype . '</td>
+      <td class="t1 haut2" >' . $lignes[$cle + $i]['aftype'] . '</td>
       <td class="t1 haut2" >' . $lignes[$cle + $i]['principale'] . '</td>
       <td class="t1 haut2" >' . $lignes[$cle + $i]['hauteur'] . '</td>
       <td class="t1 haut2" >' . trad_trav_ent($lignes[$cle + $i]['TE']) . '</td>

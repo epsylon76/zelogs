@@ -6,3 +6,5 @@ $mpdf = new \Mpdf\Mpdf([
     'orientation' => 'P',
     'format' => 'A4-P'
 ]);
+$mpdf->useSubstitutions = false;
+$mpdf->simpleTables = true;

@@ -1,13 +1,14 @@
 <?php
 class aeronef
 {
-  function af_present($immat)
+  function get_immat($immat)
   {
     global $DB_con;
-    $requete="SELECT count(immat) from aeronef where immat = '".$immat."'";
-    $query=$DB_con->query($requete);
-    $present=$query->fetch();
-    return $present[0];
+    $requete = $DB_con->prepare("SELECT count(immat) from aeronef where immat = :immat");
+    $requete->bindParam(':immat', $immat);
+    $requete->execute();
+    $present = $requete->fetch(PDO::FETCH_ASSOC);
+    return $present;
   }
 
   function type($immat)
