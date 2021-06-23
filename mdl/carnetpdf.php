@@ -112,12 +112,6 @@ class carnetpdf
         }
       }
 
-      if (isset($lignes[$cle + $i]['aftype'])) //correspondance entre aftype aeronef
-      {
-        $aftype = $lignes[$cle + $i]['aftype'];
-      } else {
-        $aftype = $lignes[$cle + $i]['immat'];
-      }
 
       $html = $html . '
       <tr>

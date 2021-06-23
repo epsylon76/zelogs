@@ -1,6 +1,6 @@
 <?php
 
-$membreid=$_SESSION['membreid'];
+$membreid = $_SESSION['membreid'];
 
 include_once 'mdl/carnet.php';
 include_once 'mdl/carnetpdf.php';
@@ -12,19 +12,22 @@ $carnetpdf = new carnetpdf();
 $carnet = new carnet();
 $aeronef = new aeronef();
 
-if(isset($_GET['date_debut']))
-{
-  $date_debut=$_GET['date_debut'];
-}else{
-  $date_debut = $carnet->premiere_date($membreid); 
+if (isset($_GET['date_debut'])) {
+  $date_debut = $_GET['date_debut'];
+} else {
+  $date_debut = $carnet->premiere_date($membreid);
 }
 
 //on met toutes les lignes du carnet en mémoire
-$lignes=$carnet->lignes_carnet($_SESSION['membreid']);
+$lignes = $carnet->lignes_carnet($_SESSION['membreid']);
 
 //il faut contraindre date_debut à être dans les limites du carnet
-if($date_debut<date_premier_saut($membreid)){$date_debut=date_premier_saut($membreid);}
-if($date_debut>date_dernier_saut($membreid)){$date_debut=date_dernier_saut($membreid);}
+if ($date_debut < date_premier_saut($membreid)) {
+  $date_debut = date_premier_saut($membreid);
+}
+if ($date_debut > date_dernier_saut($membreid)) {
+  $date_debut = date_dernier_saut($membreid);
+}
 //on definit le numero de ligne qui commence la premiere page en fontion de la date
 //pr($lignes);
 $cle = num_array_ligne($lignes, $date_debut);
