@@ -4,7 +4,7 @@ class aeronef
   function get_immat($immat)
   {
     global $DB_con;
-    $requete = $DB_con->prepare("SELECT count(immat) from aeronef where immat = :immat");
+    $requete = $DB_con->prepare("SELECT * from aeronef where `immat` = :immat");
     $requete->bindParam(':immat', $immat);
     $requete->execute();
     $present = $requete->fetch(PDO::FETCH_ASSOC);

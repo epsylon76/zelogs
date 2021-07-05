@@ -91,29 +91,30 @@ class carnetpdf
   {
     $html = '';
     $max = count($lignes);
-    for ($i = 0; $i < 10 && ($cle + $i) < $max; $i++) //executer 10 fois, sauf si la ligne en cours vaut le numero max de ligne
+    for ($i = 0; $i < 10; $i++) //executer 10 fois, sauf si la ligne en cours vaut le numero max de ligne
     {
-      $OA = 0;
-      $ORBAS = 0;
-      $ORNORM = 0;
-      $ORHAUT = 0;
+      if (($cle + $i) < $max) {
+        $OA = 0;
+        $ORBAS = 0;
+        $ORNORM = 0;
+        $ORHAUT = 0;
 
-      if ($lignes[$cle + $i]['CA'] == 0) {
-        $OA += $lignes[$cle + $i]['nb'];
-      } else {
-        if ($lignes[$cle + $i]['hauteur'] < 1600) {
-          $ORBAS += $lignes[$cle + $i]['nb'];
+        if ($lignes[$cle + $i]['CA'] == 0) {
+          $OA += $lignes[$cle + $i]['nb'];
+        } else {
+          if ($lignes[$cle + $i]['hauteur'] < 1600) {
+            $ORBAS += $lignes[$cle + $i]['nb'];
+          }
+          if ($lignes[$cle + $i]['hauteur'] > 4500) {
+            $ORHAUT += $lignes[$cle + $i]['nb'];
+          }
+          if ($lignes[$cle + $i]['hauteur'] <= 4500 && $lignes[$cle + $i]['hauteur'] >= 1600) {
+            $ORNORM += $lignes[$cle + $i]['nb'];
+          }
         }
-        if ($lignes[$cle + $i]['hauteur'] > 4500) {
-          $ORHAUT += $lignes[$cle + $i]['nb'];
-        }
-        if ($lignes[$cle + $i]['hauteur'] <= 4500 && $lignes[$cle + $i]['hauteur'] >= 1600) {
-          $ORNORM += $lignes[$cle + $i]['nb'];
-        }
-      }
 
 
-      $html = $html . '
+        $html = $html . '
       <tr>
       <td class="t1 haut2" >' . date_unix_humain($lignes[$cle + $i]['date']) . '</td>
       <td class="t1 haut2" >' . trad_fct($lignes[$cle + $i]['fct']) . '</td>
@@ -130,7 +131,28 @@ class carnetpdf
       <td class="t1 haut2" >' . $lignes[$cle + $i]['tpsvol'] * $lignes[$cle + $i]['nb'] . '</td>
       <td>' . $lignes[$cle + $i]['com'] . '</td>
       </tr>';
+      } else {
+        //afficher des lignes vides pour compléter la page
+        $html = $html . '
+      <tr>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td class="t1 haut2" ></td>
+      <td></td>
+      </tr>';
+      }
     }
+
     return $html;
   }
 

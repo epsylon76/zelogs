@@ -48,7 +48,7 @@ while ($cle <= $maxligne) {
   $mpdf->WriteHTML($html);
   $html = '';
   $cle = $cle + 10;
-  //echo $page;
+
   $page++;
 }
 

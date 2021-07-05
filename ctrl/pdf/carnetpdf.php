@@ -32,8 +32,7 @@ if ($date_debut > date_dernier_saut($membreid)) {
 //pr($lignes);
 $cle = num_array_ligne($lignes, $date_debut);
 //echo $cle;
-//on definit un type d'aéronef si l'immat existe dans la table aeronef
-$lignes[$key]['aftype'] = $ligne['immat'];
+
 
 //on met en mémoire le numero de ligne max
 $maxligne = (count($lignes) - 1); //count != array key

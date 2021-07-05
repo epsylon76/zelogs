@@ -7,7 +7,7 @@ class carnet
   {
     global $DB_con;
     $req = $DB_con->prepare("SELECT * from `Item`
-    LEFT JOIN `aeronef` on `aeronef`.`immat` = `Item`.`immat`
+    LEFT JOIN `aeronef` on `aeronef`.`afimmat` = `Item`.`immat`
     WHERE membreid = :membreid ORDER BY `date`, `itemid`");
     $req->bindParam(':membreid', $membreid);
     $req->execute();
