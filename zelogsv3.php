@@ -7,7 +7,12 @@ session_start();
 
 include_once 'cfg/dbconn.php';
 include_once 'fct/globales.php';
-include_once 'vue/head.php';
+
+if (isset($_GET['page']) && $_GET['page'] != 'carnetpdf' && $_GET['page'] != 'arretpdf') { //ne pas envoyer la head pour les pdf
+  include_once 'vue/head.php';
+}else{
+  include_once 'vue/head.php';
+}
 
 // tout d'abord on teste si l'utilisateur est loggué
 //s'il est loggué depuis plus d'une heure il retourne également à la page de login

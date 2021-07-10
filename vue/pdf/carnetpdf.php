@@ -55,6 +55,6 @@ while ($cle <= $maxligne) {
 
 
 // output the HTML content
-//$mpdf->Output('filename.pdf','D'); //download
-$mpdf->Output('carnet.pdf', 'I'); //impress
+$mpdf->Output('carnet.pdf','D'); //download
+//$mpdf->Output('carnet.pdf', 'I'); //impress
 
