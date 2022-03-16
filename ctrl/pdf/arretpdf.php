@@ -17,8 +17,8 @@ if(isset($_GET['date_arret']))
   $date_arret = $carnet->derniere_date($membreid);
 }
 
-//il faut contraindre date_arret à être dans les limites du carnet
-if($date_arret>date_dernier_saut($membreid)){$date_arret=date_dernier_saut($membreid);}
+//il faut contraindre date_arret à être dans les limites du carnet => non, au contraire, pas obligatoire
+//if($date_arret>date_dernier_saut($membreid)){$date_arret=date_dernier_saut($membreid);}
 
 //initialisation des valeurs
 $total="0";
