@@ -45,7 +45,7 @@ class membres
     $length = 12;
     global $DB_con;
     $pass=md5($data['pass']);
-    $requete= $DB->prepare("INSERT INTO membre (
+    $requete= $DB_con->prepare("INSERT INTO membre (
       `id`,
       `login`,
       `mail`,
