@@ -93,7 +93,7 @@
 
                 <div class="field">
                   <input type="text" class="input" placeholder="Quel mois sommes nous ?" name="test" required />
-                  <label style="font-size:10px">sans accents ni majuscule</label>
+                  <label style="font-size:10px">sans accents ni majuscule ni espaces</label>
                 </div>
 
 

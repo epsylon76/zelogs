@@ -54,15 +54,15 @@ class membres
       VALUES
       (
         NULL,
-        ':login',
-        ':email',
-        ':pass',
+        :login,
+        :email,
+        :pass,
         NOW()
       )");
 
       $requete->bindParam(':login', $data['login']);
       $requete->bindParam(':email', $data['email']);
-      $requete->bindParam(':pass', $data['pass']);
+      $requete->bindParam(':pass', $pass);
     //echo $requete;
    $requete->execute();
   }

@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="container">
     <div class="col-md-12">
@@ -24,17 +23,15 @@
             <tbody>
               <?php
 
-              foreach($liste_membres as $ligne)
-              {
+              foreach ($liste_membres as $ligne) {
 
                 echo "<tr class=\"odd gradeX\">";
                 echo "<td>{$ligne['id']}</td>";
                 echo "<td>{$ligne['login']}</td>";
                 echo "<td>{$ligne['mail']}</td>";
-                echo "<td>".$carnet->compte_sauts($ligne['id'],0,0,0)."</td>";
+                echo "<td>" . $carnet->compte_sauts($ligne['id'], 0, 0, 0) . "</td>";
                 echo "<td>{$ligne['timestamp']}</td>";
                 echo "</tr>";
-
               }
               ?>
             </tbody>
@@ -69,46 +66,45 @@
             <tbody>
               <?php
 
-              foreach($liste_af as $ligne)
-              {
-
-                if($aeronef->af_present($ligne['immat']))
-                {$type=$aeronef->type($ligne['immat']);}else{$type="?";}
+              foreach ($liste_af as $ligne) {
+                
+                $infos_af = $aeronef->get_immat($ligne['immat']);
+                if (!empty($infos_af)) {
+                  $type = $aeronef->type($ligne['immat']);
+                } else {
+                  $type = "?";
+                }
 
                 echo "<tr class=\"odd gradeX\">";
                 echo "<td>{$ligne['immat']}";
-                echo " <a href='http://www.airport-data.com/aircraft/".$ligne['immat'].".html' target='_blank'><i class='fa fa-search'></i></a>";
-                if($type=="?" && $ligne['immat']!="")
-                {
-                  echo "<a href='zelogsv3.php?page=admin&action=addaf&immat=".$ligne['immat']."' class='pull-right'>+</a>";
+                echo " <a href='http://www.airport-data.com/aircraft/" . $ligne['immat'] . ".html' target='_blank'><i class='fa fa-search'></i></a>";
+                if ($type == "?" && $ligne['immat'] != "") {
+                  echo "<a href='zelogsv3.php?page=admin&action=addaf&immat=" . $ligne['immat'] . "' class='pull-right'>+</a>";
                 }
                 echo "</td>";
                 echo "<td>{$ligne['tot']}</td>";
                 echo "<td>{$type}</td>";
                 echo "<td>";
-                if($type=="?" && $ligne['immat']!="")
-                {
+                if ($type == "?" && $ligne['immat'] != "") {
                   echo "<form action='zelogsv3.php' method='get'>";
                   echo "<input type='hidden' name='page' value='admin'/>";
-                  echo "<input type='hidden' name='immat' value='".$ligne['immat']."'/>";
+                  echo "<input type='hidden' name='immat' value='" . $ligne['immat'] . "'/>";
                   echo "<input type='text' size='8' maxlength='8' name='newimmat'/>";
                   echo "<button class='btn btn-success btn-sm' value='submit' >go</button>";
                   echo "</form>";
                 }
                 echo "</td>";
                 echo "<td>";
-                if($type!="?")
-                {
-                echo "<form action='zelogsv3.php' method='get'>";
-                echo "<input type='hidden' name='page' value='admin'/>";
-                echo "<input type='hidden' name='immat' value='".$ligne['immat']."'/>";
-                echo "<input type='text' size='8' maxlength='8' name='newtype'/>";
-                echo "<button class='btn btn-success btn-sm' type='submit'>go</button>";
-                echo "</form>";
-              }
+                if ($type != "?") {
+                  echo "<form action='zelogsv3.php' method='get'>";
+                  echo "<input type='hidden' name='page' value='admin'/>";
+                  echo "<input type='hidden' name='immat' value='" . $ligne['immat'] . "'/>";
+                  echo "<input type='text' size='8' maxlength='8' name='newtype'/>";
+                  echo "<button class='btn btn-success btn-sm' type='submit'>go</button>";
+                  echo "</form>";
+                }
                 echo "</td>";
                 echo "</tr>";
-
               }
               ?>
             </tbody>
