@@ -68,6 +68,10 @@
                         case 'robot':
                           echo "Réponse anti robots incorrecte";
                         break;
+
+                        case 'invalide':
+                          echo "Identifiant, e-mail ou mot de passe (6 caractères minimum) invalide";
+                        break;
                       }
                       ?>
                     </p>
@@ -103,22 +107,11 @@
 
               </form>
             </div>
-  </section>div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-
-
-
-
-
-  </div><!-- /.login-box-body -->
-  </div><!-- /.login-box -->
-
-
-
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 

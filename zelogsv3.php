@@ -1,22 +1,26 @@
 <?php
 
 error_reporting(E_ALL);
-ini_set("display_errors", 1);
+// erreurs journalisées, jamais affichées aux visiteurs (11/11/2026)
+ini_set("display_errors", 0);
+ini_set("log_errors", 1);
 
 session_start();
 
 include_once 'cfg/dbconn.php';
 include_once 'fct/globales.php';
-
-if (isset($_GET['page']) && $_GET['page'] != 'carnetpdf' && $_GET['page'] != 'arretpdf') { //ne pas envoyer la head pour les pdf
-  include_once 'vue/head.php';
-}else{
-  include_once 'vue/head.php';
-}
+include_once 'fct/securite.php';
 
 // tout d'abord on teste si l'utilisateur est loggué
 //s'il est loggué depuis plus d'une heure il retourne également à la page de login
-if (!isset($_SESSION['login']) || !isset($_SESSION['pass_md5']) || ($_SESSION['timestamp'] + 3600) <= time())
+$connecte = isset($_SESSION['login'], $_SESSION['membreid'], $_SESSION['timestamp']) && ($_SESSION['timestamp'] + 3600) > time();
+$page_pdf = isset($_GET['page']) && in_array($_GET['page'], array('carnetpdf', 'arretpdf'), true);
+
+if (!($connecte && $page_pdf)) { //ne pas envoyer la head pour les pdf
+  include_once 'vue/head.php';
+}
+
+if (!$connecte)
 //si ce n'est pas le cas on lui affiche la page de login ou
 {
   if (isset($_GET['page']) && $_GET['page'] == "register") {
@@ -27,7 +31,8 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['pass_md5']) || ($_SESSION['t
 } else //onpeut afficher tout autre page
 {
   //on met à jour son timestamp
-  $DB_con->query('UPDATE membre SET timestamp=NOW() WHERE id="' . $_SESSION['membreid'] . '" ');
+  $maj = $DB_con->prepare('UPDATE membre SET timestamp=NOW() WHERE id = :id');
+  $maj->execute(array(':id' => (int) $_SESSION['membreid']));
   $_SESSION['timestamp'] = time();
 
   //si on a pas de paramètre page, on renvoie vers la page principale

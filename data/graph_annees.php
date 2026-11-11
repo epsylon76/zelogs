@@ -6,11 +6,11 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Novembre", "Décembre"],
+        labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
         datasets:
         [
           {
-            label: "<?php echo $annee_avant ?>",
+            label: "<?php echo (int) $annee_avant ?>",
             backgroundColor: '#00a65a',
             borderColor: '#00a65a',
             data: [
@@ -29,7 +29,7 @@ var chart = new Chart(ctx, {
             ]
         },
         {
-            label: "<?php echo $annee_en_cours ?>",
+            label: "<?php echo (int) $annee_en_cours ?>",
             backgroundColor: '#f56954',
             borderColor: '#f56954',
             data:

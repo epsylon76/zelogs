@@ -2,10 +2,16 @@
 
 set_time_limit(500);
 //on va compter deux tableau avant un changement de page
-$html='<style>
+$html='<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Arrêt de carnet</title>
+<style>
+@page{size:A4 portrait;margin:16mm 15mm 16mm 15mm;}
+body{margin:0;}
+h2{margin:0.3em 0;}
+h4{margin:0 0 0.3em 0;}
 table{
   width:100%;
-  font-family:courier;
+  font-family:"Courier New",Courier,"Liberation Mono",monospace;
   font-size:14px;
   font-weight:bold;
   border-collapse:collapse;
@@ -16,7 +22,7 @@ td{
     border:0.5px solid black;
     vertical-align:top;
 }
-</style>';
+</style></head><body>';
 
 $html=$html.
 '
@@ -68,5 +74,12 @@ $html=$html.
 
 
 
-$mpdf->WriteHTML($html);
-$mpdf->Output('carnet.pdf', 'I'); //impress
+$html .= '</body></html>';
+
+// affichage du PDF dans le navigateur
+gotenberg_pdf($html, 'carnet.pdf', 'inline', array(
+  'marginTop' => '16mm',
+  'marginBottom' => '16mm',
+  'marginLeft' => '15mm',
+  'marginRight' => '15mm',
+));

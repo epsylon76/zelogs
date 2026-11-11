@@ -15,8 +15,8 @@ class aeronef
   function type($immat)
   {
     global $DB_con;
-    $requete="SELECT `aftype` from `aeronef` where `afimmat` = '".$immat."'";
-    $query=$DB_con->query($requete);
+    $query=$DB_con->prepare("SELECT `aftype` from `aeronef` where `afimmat` = :immat");
+    $query->execute(array(':immat' => $immat));
     $type=$query->fetch();
     return $type[0];
   }
@@ -24,23 +24,22 @@ class aeronef
   function ajout_table_aeronef($immat)
   {
     global $DB_con;
-    $requete="INSERT INTO aeronef ( `afimmat`, `aftype`) VALUES ('".$immat."', 'Inconnu')";
-    $DB_con->query($requete);
+    $requete=$DB_con->prepare("INSERT INTO aeronef ( `afimmat`, `aftype`) VALUES (:immat, 'Inconnu')");
+    $requete->execute(array(':immat' => $immat));
   }
 
   function set_immat($immat,$newimmat)
   {
     global $DB_con;
-    $requete="UPDATE Item SET afimmat = '".$newimmat."' where afimmat = '".$immat."'";
-    $DB_con->query($requete);
-    echo $requete;
+    $requete=$DB_con->prepare("UPDATE Item SET immat = :newimmat where immat = :immat");
+    $requete->execute(array(':newimmat' => $newimmat, ':immat' => $immat));
   }
 
   function set_type($immat,$type)
   {
     global $DB_con;
-    $requete="UPDATE aeronef SET aftype = '".$type."' where afimmat = '".$immat."'";
-    $DB_con->query($requete);
+    $requete=$DB_con->prepare("UPDATE aeronef SET aftype = :type where afimmat = :immat");
+    $requete->execute(array(':type' => $type, ':immat' => $immat));
   }
 
   function liste_af_items()

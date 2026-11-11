@@ -3,21 +3,17 @@
 //retourne le nombre de sauts par mois dans l'année demandée
 function nbsautsmois($annee)
 {
+  global $DB_con;
+  $recapsaut = array();
   for ($m = 1; $m <= 12; $m++) {
-    global $DB_con;
-
-    $sql = $DB_con->query('
-    SELECT SUM(nb)
-    FROM `Item`
-    WHERE MONTH(date)="' . $m . '"
-    AND YEAR(date)="' . $annee . '"
-    AND membreid="' . $_SESSION['membreid'] . '"
-    ');
-
-    $recap = $sql->fetch();
-    $recapsaut[$m] = $recap[0];
-    if ($recapsaut[$m] <= "0") {
-      $recapsaut[$m] = "0";
+    $recapsaut[$m] = "0";
+  }
+  $sql = $DB_con->prepare('SELECT MONTH(date) AS mois, SUM(nb) AS total FROM `Item`
+    WHERE YEAR(date) = :annee AND membreid = :membreid GROUP BY MONTH(date)');
+  $sql->execute(array(':annee' => (int) $annee, ':membreid' => (int) $_SESSION['membreid']));
+  foreach ($sql->fetchAll(PDO::FETCH_ASSOC) as $ligne) {
+    if ($ligne['total'] > 0) {
+      $recapsaut[(int) $ligne['mois']] = $ligne['total'];
     }
   }
   return $recapsaut;
@@ -71,45 +67,28 @@ function heures_et_minutes($minutes_entree)
 
 function tps_vol($membreid, $annee)
 {
-  if ($annee != 0) {
-    $arg1 = "AND YEAR(date)=" . $annee;
-  } else {
-    $arg1 = "";
-  }
   global $DB_con;
-  $sql = '
-  SELECT tpsvol, nb
-  FROM `Item`
-  WHERE  `membreid` =  "' . $membreid . '"
-  ' . $arg1 . '
-  ';
-  $data = $DB_con->prepare($sql);
-  $data->execute();
-  $res = $data->fetchAll();
-  $tps = 0;
-  foreach ($res as $ligne) {
-    $tps = $tps + ($ligne['nb'] * $ligne['tpsvol']);
+  $sql = 'SELECT SUM(tpsvol * nb) FROM `Item` WHERE `membreid` = :membreid';
+  $params = array(':membreid' => (int) $membreid);
+  if ($annee != 0) {
+    $sql .= ' AND YEAR(date) = :annee';
+    $params[':annee'] = (int) $annee;
   }
-  return $tps;
+  $data = $DB_con->prepare($sql);
+  $data->execute($params);
+  $tps = $data->fetchColumn();
+  return $tps ? $tps : 0;
 }
 
-function num_array_ligne($lignes, $date)  //retourne la clé du tableau à la premiere date trouvée à ou après la date donnée (numéro de ligne)
+function num_array_ligne($lignes, $date)  //retourne la clé de la première ligne à ou après la date donnée (numéro de ligne)
 {
-
-  $date = new DateTime($date);
-  //echo $date->format('Y-m-d');
-
-  $key = array_search($date->format('Y-m-d'), array_column($lignes, 'date'));
-  
- 
-
-  if ($date->format('Y-m-d') > $lignes[0]['date']) { //seulement si la date entrée est superieure à la date de la première ligne du carnet
-    while (!$key) {  //essayer une date suivante si elle n'est pas dans le carnet
-      $date->modify('+1 day');
-      //echo $date->format('Y-m-d');
-      $key = array_search($date->format('Y-m-d'), array_column($lignes, 'date'));
+  // réécrit le 11/11/2026 : l'ancienne version avançait jour par jour et bouclait
+  // indéfiniment si aucune ligne n'existait après la date demandée
+  $date = (new DateTime($date))->format('Y-m-d');
+  foreach ($lignes as $cle => $ligne) {
+    if ($ligne['date'] >= $date) {
+      return $cle;
     }
   }
- // echo $key;
-  return $key;
+  return max(0, count($lignes) - 1);
 }

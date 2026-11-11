@@ -1,16 +1,23 @@
 <?php
 
-include_once 'vue/modules/menu.php';
 
 include_once 'mdl/carnet.php';
 $carnet = new carnet();
 
-$membreid=$_SESSION['membreid'];
+$membreid=(int) $_SESSION['membreid'];
 
 //si des données POST ont été envoyées, on procède à l'ajout ou la modif dans la base
 
 if(isset($_POST['nb']))
 {
+  if(!csrf_valide()){
+    header('Location: zelogsv3.php?page=carnet');
+    exit();
+  }
+  // le membre vient TOUJOURS de la session, jamais du formulaire (corrigé le 11/11/2026)
+  $_POST['membreid']=$membreid;
+  if(isset($_POST['element'])){$_POST['element']=(int) $_POST['element'];}
+
   //si les checkbox sont non cochées on met la val à 0
   if(!isset($_POST['M'])){$_POST['M']=0;}
   if(!isset($_POST['N'])){$_POST['N']=0;}
@@ -24,12 +31,14 @@ if(isset($_POST['nb']))
     //modification
     $carnet->modif_saut($_POST);
     header('Location: zelogsv3.php?page=carnet');
+    exit();
   }
   else
   {
     //ajout
     $carnet->ajout_saut($_POST);
     header('Location: zelogsv3.php?page=carnet');
+    exit();
   }
 }
 else //pas de POST
@@ -52,8 +61,9 @@ else //pas de POST
     }
     else
     {
-      echo "l'élément n'appartient pas au membre";
-      //retour à la page carnet à cause de l'erreur
+      //l'élément n'appartient pas au membre : retour au carnet
+      header('Location: zelogsv3.php?page=carnet');
+      exit();
     }
   }
 
@@ -104,6 +114,11 @@ else //pas de POST
       $element['nb']='';
       $titre_panel="<i class=\"fa fa-plus\"></i> Ajout Saut";
     }
+    else
+    {
+      header('Location: zelogsv3.php?page=carnet');
+      exit();
+    }
   }//!!!COPIE SAUT
 
   //$element=$carnet->ligne_carnet($dernierelement);
@@ -111,5 +126,6 @@ else //pas de POST
   //soit on a une référence de copie et on prend ces éléments
   //la fonction appelée le fera selon si on renseigne la derniere variable ou Non
 
+include_once 'vue/modules/menu.php';
 include_once 'vue/carnet/ajout_modif_saut.php';
 }

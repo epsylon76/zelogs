@@ -26,11 +26,11 @@
               foreach ($liste_membres as $ligne) {
 
                 echo "<tr class=\"odd gradeX\">";
-                echo "<td>{$ligne['id']}</td>";
-                echo "<td>{$ligne['login']}</td>";
-                echo "<td>{$ligne['mail']}</td>";
+                echo "<td>" . (int) $ligne['id'] . "</td>";
+                echo "<td>" . e($ligne['login']) . "</td>";
+                echo "<td>" . e($ligne['mail']) . "</td>";
                 echo "<td>" . $carnet->compte_sauts($ligne['id'], 0, 0, 0) . "</td>";
-                echo "<td>{$ligne['timestamp']}</td>";
+                echo "<td>" . e($ligne['timestamp']) . "</td>";
                 echo "</tr>";
               }
               ?>
@@ -75,20 +75,22 @@
                   $type = "?";
                 }
 
+                $immat_html = e($ligne['immat']);
                 echo "<tr class=\"odd gradeX\">";
-                echo "<td>{$ligne['immat']}";
-                echo " <a href='http://www.airport-data.com/aircraft/" . $ligne['immat'] . ".html' target='_blank'><i class='fa fa-search'></i></a>";
+                echo "<td>{$immat_html}";
+                echo " <a href='https://www.airport-data.com/aircraft/" . e(rawurlencode($ligne['immat'])) . ".html' target='_blank' rel='noopener'><i class='fa fa-search'></i></a>";
                 if ($type == "?" && $ligne['immat'] != "") {
-                  echo "<a href='zelogsv3.php?page=admin&action=addaf&immat=" . $ligne['immat'] . "' class='pull-right'>+</a>";
+                  echo "<form action='zelogsv3.php?page=admin' method='post' style='display:inline' class='pull-right'>" . csrf_champ();
+                  echo "<input type='hidden' name='action' value='addaf'/><input type='hidden' name='immat' value='{$immat_html}'/>";
+                  echo "<button type='submit' class='button is-small'>+</button></form>";
                 }
                 echo "</td>";
-                echo "<td>{$ligne['tot']}</td>";
-                echo "<td>{$type}</td>";
+                echo "<td>" . e($ligne['tot']) . "</td>";
+                echo "<td>" . e($type) . "</td>";
                 echo "<td>";
                 if ($type == "?" && $ligne['immat'] != "") {
-                  echo "<form action='zelogsv3.php' method='get'>";
-                  echo "<input type='hidden' name='page' value='admin'/>";
-                  echo "<input type='hidden' name='immat' value='" . $ligne['immat'] . "'/>";
+                  echo "<form action='zelogsv3.php?page=admin' method='post'>" . csrf_champ();
+                  echo "<input type='hidden' name='immat' value='{$immat_html}'/>";
                   echo "<input type='text' size='8' maxlength='8' name='newimmat'/>";
                   echo "<button class='btn btn-success btn-sm' value='submit' >go</button>";
                   echo "</form>";
@@ -96,9 +98,8 @@
                 echo "</td>";
                 echo "<td>";
                 if ($type != "?") {
-                  echo "<form action='zelogsv3.php' method='get'>";
-                  echo "<input type='hidden' name='page' value='admin'/>";
-                  echo "<input type='hidden' name='immat' value='" . $ligne['immat'] . "'/>";
+                  echo "<form action='zelogsv3.php?page=admin' method='post'>" . csrf_champ();
+                  echo "<input type='hidden' name='immat' value='{$immat_html}'/>";
                   echo "<input type='text' size='8' maxlength='8' name='newtype'/>";
                   echo "<button class='btn btn-success btn-sm' type='submit'>go</button>";
                   echo "</form>";

@@ -12,9 +12,8 @@ $carnetpdf = new carnetpdf();
 $carnet = new carnet();
 $aeronef = new aeronef();
 
-if (isset($_GET['date_debut'])) {
-  $date_debut = $_GET['date_debut'];
-} else {
+$date_debut = date_valide(isset($_GET['date_debut']) ? $_GET['date_debut'] : null);
+if ($date_debut === null) {
   $date_debut = $carnet->premiere_date($membreid);
 }
 

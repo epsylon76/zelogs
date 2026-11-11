@@ -10,10 +10,9 @@ include_once 'fct/calculs.php';
 $arretpdf = new arretpdf();
 $carnet = new carnet();
 
-if(isset($_GET['date_arret']))
+$date_arret = date_valide(isset($_GET['date_arret']) ? $_GET['date_arret'] : null);
+if($date_arret === null)
 {
-  $date_arret=$_GET['date_arret'];
-}else{
   $date_arret = $carnet->derniere_date($membreid);
 }
 

@@ -6,7 +6,7 @@ $membres= new membres();
 if (isset($_POST['login']) && isset($_POST['pass']))
 {
   //si un des deux champs est vide on renvoie une erreur
-  if(empty($_POST['login']) || empty($_POST['pass']))
+  if(!is_string($_POST['login']) || !is_string($_POST['pass']) || $_POST['login'] === '' || $_POST['pass'] === '')
   {
     header('Location: zelogsv3.php?page=login&erreur=champ');
     exit();
@@ -18,13 +18,14 @@ if (isset($_POST['login']) && isset($_POST['pass']))
   {
     $donnees_membre = $membres->donnees_membre($test_login['id']);
 
+    // nouvel identifiant de session à la connexion (fixation de session)
+    session_regenerate_id(true);
+    $_SESSION = array();
     $_SESSION['login'] = $donnees_membre['login'];
-    $_SESSION['pass_md5'] = $donnees_membre['pass_md5'];
-    $_SESSION['membreid'] = $donnees_membre['id'];
+    $_SESSION['membreid'] = (int) $donnees_membre['id'];
     $_SESSION['timestamp'] = time();
 
-    echo 'succès';
-    header('Location: zelogsv3.php',1);
+    header('Location: zelogsv3.php');
     exit();
   }
   else // si on ne trouve aucune réponse, le visiteur s'est trompé soit dans son login, soit dans son mot de passe

@@ -13,10 +13,10 @@
         <div class="columns">
 
           <!-- inputs cachés -->
-          <input type="hidden" name="membreid" value="<?php echo $membreid; ?>">
           <?php
+          echo csrf_champ();
           if (isset($itemid)) {
-            echo '<input type="hidden" name="element" value="' . $itemid . '">';
+            echo '<input type="hidden" name="element" value="' . (int) $itemid . '">';
           }
           ?>
 
@@ -26,21 +26,21 @@
             <div class="field">
               <label class="label  has-text-white">Date</label>
               <div class="control">
-                <input class="input" type="date" value="<?php echo $element['date']; ?>" name="date" required>
+                <input class="input" type="date" value="<?php echo e($element['date']); ?>" name="date" required>
               </div>
             </div>
 
             <div class="field">
               <label class="label has-text-white">Lieu</label>
               <div class="control">
-                <input class="input" type="text" list="lieu" required data-parsley-length="[2, 12]" value="<?php echo $element['lieu']; ?>" name="lieu" id="lieu" required>
+                <input class="input" type="text" list="lieu" required data-parsley-length="[2, 12]" value="<?php echo e($element['lieu']); ?>" name="lieu" id="lieu" required>
               </div>
             </div>
 
             <div class="field">
               <label class="label has-text-white">Nombre</label>
               <div class="control">
-                <input class="input" type="number" min="1" max="700" value="<?php echo $element['nb']; ?>" name="nb" required>
+                <input class="input" type="number" min="1" max="700" value="<?php echo e($element['nb']); ?>" name="nb" required>
               </div>
             </div>
 
@@ -68,21 +68,21 @@
             <div class="field">
               <label class="label has-text-white">Hauteur</label>
               <div class="control">
-                <input class="input" type="number" min="1" max="30000" value="<?php echo $element['hauteur'] ?>" name="hauteur" id="hauteur" required>
+                <input class="input" type="number" min="1" max="30000" value="<?php echo e($element['hauteur']); ?>" name="hauteur" id="hauteur" required>
               </div>
             </div>
 
             <div class="field">
               <label class="label has-text-white">Immat Aéronef</label>
               <div class="control">
-                <input type="text" class="input" list="immat" name="immat" data-parsley-length="[2, 6]" value="<?php echo $element['immat']; ?>" id="immat" required>
+                <input type="text" class="input" list="immat" name="immat" maxlength="10" value="<?php echo e($element['immat']); ?>" id="immat" required>
               </div>
             </div>
 
             <div class="field">
               <label class="label has-text-white">Parachute</label>
               <div class="control">
-                <input list="parachute" class="input" type="text" name="principale" data-parsley-length="[4, 12]" value="<?php echo $element['principale']; ?>" id="principale" required>
+                <input list="parachute" class="input" type="text" name="principale" maxlength="20" value="<?php echo e($element['principale']); ?>" id="principale" required>
               </div>
             </div>
 
@@ -218,14 +218,14 @@
                 <div class="field">
                   <label class="label">Temps de vol</label>
                   <div class="control">
-                    <input class="input" type="number" min="1" max="600" name='tpsvol' class='form-control' value="20" value="<?php echo $element['tpsvol']; ?>" id="tpsvol" required>
+                    <input class="input" type="number" min="1" max="600" name='tpsvol' class='form-control' value="<?php echo e($element['tpsvol']); ?>" id="tpsvol" required>
                   </div>
                 </div>
 
                 <div class="field">
                   <label class="label">Commentaire</label>
                   <div class="control">
-                    <textarea class="input" rows="3" name="com"><?php echo $element['com']; ?></textarea>
+                    <textarea class="input" rows="3" name="com"><?php echo e($element['com']); ?></textarea>
                   </div>
                 </div>
 

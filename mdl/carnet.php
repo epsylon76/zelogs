@@ -23,14 +23,14 @@ class carnet
     $requete->bindParam(':membreid', $membreid);
     $requete->execute();
     $date = $requete->fetch();
-    return $date['date'];
+    return $date[0];
   }
 
   function derniere_date($membreid)
   {
     global $DB_con;
-    $requete = "SELECT max(date) from Item where membreid = " . $membreid;
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT max(date) from Item where membreid = :membreid");
+    $query->execute(array(':membreid' => (int) $membreid));
     $date = $query->fetch();
     return $date[0];
   }
@@ -40,8 +40,9 @@ class carnet
   function ligne_carnet($itemid)
   {
     global $DB_con;
-    $requete = "SELECT * from Item where itemid = " . $itemid;
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT * from Item where itemid = :itemid");
+    $query->bindValue(':itemid', (int) $itemid, PDO::PARAM_INT);
+    $query->execute();
     $ligne = $query->fetch();
     return $ligne;
   }
@@ -49,8 +50,8 @@ class carnet
   function dernier_element($membreid)
   {
     global $DB_con;
-    $requete = "SELECT MAX(itemid) from Item where membreid = " . $membreid;
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT MAX(itemid) from Item where membreid = :membreid");
+    $query->execute(array(':membreid' => (int) $membreid));
     $ligne = $query->fetch();
     $ligne = $ligne[0];
     if (!empty($ligne)) {
@@ -60,90 +61,43 @@ class carnet
     }
   }
 
+  // champs d'une ligne de carnet (requêtes préparées depuis le 11/11/2026)
+  private $champs_saut = array('CA', 'date', 'fct', 'lieu', 'immat', 'principale', 'hauteur', 'TE', 'M', 'BS', 'N', 'C', 'W', 'L', 'tpsvol', 'nb', 'com');
+
+  private function valeurs_saut($array)
+  {
+    $valeurs = array();
+    foreach ($this->champs_saut as $champ) {
+      $valeurs[':' . $champ] = isset($array[$champ]) ? $array[$champ] : '';
+    }
+    return $valeurs;
+  }
+
   function ajout_saut($array)
   //ajoute un saut
   {
     global $DB_con;
-    $requete = "
-    INSERT INTO `Item`
-    (
-      `itemid`,
-      `membreid`,
-      `CA`,
-      `date`,
-      `fct`,
-      `lieu`,
-      `immat`,
-      `principale`,
-      `hauteur`,
-      `TE`,
-      `M`,
-      `BS`,
-      `N`,
-      `C`,
-      `W`,
-      `L`,
-      `tpsvol`,
-      `nb`,
-      `com`
-      )
-      VALUES
-      (
-        NULL,
-        '{$array['membreid']}',
-        '{$array['CA']}',
-        '{$array['date']}',
-        '{$array['fct']}',
-        '{$array['lieu']}',
-        '{$array['immat']}',
-        '{$array['principale']}',
-        '{$array['hauteur']}',
-        '{$array['TE']}',
-        '{$array['M']}',
-        '{$array['BS']}',
-        '{$array['N']}',
-        '{$array['C']}',
-        '{$array['W']}',
-        '{$array['L']}',
-        '{$array['tpsvol']}',
-        '{$array['nb']}',
-        '{$array['com']}'
-        )";
-    $query = $DB_con->query($requete);
+    $colonnes = '`membreid`, `' . implode('`, `', $this->champs_saut) . '`';
+    $marqueurs = ':membreid, :' . implode(', :', $this->champs_saut);
+    $req = $DB_con->prepare("INSERT INTO `Item` ($colonnes) VALUES ($marqueurs)");
+    $valeurs = $this->valeurs_saut($array);
+    $valeurs[':membreid'] = (int) $array['membreid'];
+    $req->execute($valeurs);
   }
 
   function modif_saut($array)
-  //modifie un saut
+  //modifie un saut (uniquement s'il appartient au membre)
   {
     global $DB_con;
-
-    var_dump($array);
-
-    $requete = "
-        UPDATE `Item`
-        SET
-          `membreid`= '{$array['membreid']}',
-          `CA`= '{$array['CA']}',
-          `date`= '{$array['date']}',
-          `fct` = '{$array['fct']}',
-          `lieu` = '{$array['lieu']}',
-          `immat` = '{$array['immat']}',
-          `principale` = '{$array['principale']}',
-          `hauteur` = '{$array['hauteur']}',
-          `TE` = '{$array['TE']}',
-          `M` = '{$array['M']}',
-          `BS` = '{$array['BS']}',
-          `N` = '{$array['N']}',
-          `C` = '{$array['C']}',
-          `W` = '{$array['W']}',
-          `L` = '{$array['L']}',
-          `tpsvol` = '{$array['tpsvol']}',
-          `nb` = '{$array['nb']}',
-          `com` = '{$array['com']}'
-          where
-          `itemid` = '{$array['element']}'
-          ";
-    $query = $DB_con->query($requete);
+    $sets = array();
+    foreach ($this->champs_saut as $champ) {
+      $sets[] = "`$champ` = :$champ";
+    }
+    $req = $DB_con->prepare("UPDATE `Item` SET " . implode(', ', $sets) . " WHERE `itemid` = :itemid AND `membreid` = :membreid");
+    $valeurs = $this->valeurs_saut($array);
+    $valeurs[':itemid'] = (int) $array['element'];
+    $valeurs[':membreid'] = (int) $array['membreid'];
+    $req->execute($valeurs);
   }
 
   function icones_type_saut($BS)
@@ -162,7 +116,7 @@ class carnet
   {
     global $DB_con;
     $requete = $DB_con->prepare("DELETE from Item where itemid = :id");
-    $requete->bindParam(':id', $element);
+    $requete->bindValue(':id', (int) $element, PDO::PARAM_INT);
     $requete->execute();
   }
 
@@ -171,8 +125,10 @@ class carnet
   function item_ownedby_membre($itemid, $membreid)
   {
     global $DB_con;
-    $requete = "SELECT COUNT(itemid) from Item where itemid = " . $itemid . " and membreid = " . $membreid;
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT COUNT(itemid) from Item where itemid = :itemid and membreid = :membreid");
+    $query->bindValue(':itemid', (int) $itemid, PDO::PARAM_INT);
+    $query->bindValue(':membreid', (int) $membreid, PDO::PARAM_INT);
+    $query->execute();
     $lignes = $query->fetch();
     return $lignes[0] >= 1;
   }
@@ -180,72 +136,62 @@ class carnet
   function compte_sauts($membreid, $annee, $critere, $val_critere)
   {
     global $DB_con;
-    //on paramètre les arguments
+    $sql = 'SELECT SUM(nb) FROM `Item` WHERE `membreid` = :membreid';
+    $params = array(':membreid' => (int) $membreid);
     if ($annee != 0) {
-      $arg1 = "AND YEAR(date) = " . $annee;
-    } else {
-      $arg1 = "";
+      $sql .= ' AND YEAR(date) = :annee';
+      $params[':annee'] = (int) $annee;
     }
-    if ($critere != "0") {
-      $arg2 = "AND " . $critere . "=" . $val_critere;
-    } else {
-      $arg2 = "";
+    // seules les colonnes TE et BS sont des critères possibles
+    if (in_array($critere, array('TE', 'BS'), true)) {
+      $sql .= ' AND `' . $critere . '` = :val';
+      $params[':val'] = (int) $val_critere;
     }
-
-    $sql = '
-        SELECT SUM(nb)
-        FROM `Item`
-        WHERE  `membreid` =  "' . $membreid . '"
-        ' . $arg1 . '
-        ' . $arg2 . '
-        ';
-    //echo $sql;
-    $data = $DB_con->query($sql);
-    $data = $data->fetch(PDO::FETCH_BOTH);
-    if ($data[0] == "") {
-      $data[0] = 0;
-    }
-    return $data[0];
+    $data = $DB_con->prepare($sql);
+    $data->execute($params);
+    $total = $data->fetchColumn();
+    return $total ? $total : 0;
   }
 
   function comptage($array, $membreid) //fonction de comptage de la page compter
   {
     global $DB_con;
-    $requete = "SELECT SUM(nb) from Item where membreid=" . $membreid;
-    $requete = $requete . " AND date Between '" . $_POST['dated'] . "' AND '" . $_POST['datef'] . "'";
-    if ($_POST['lieu'] != '') {
-      $requete = $requete . " AND lieu = \"" . $_POST['lieu'] . "\"";
+    $sql = "SELECT SUM(nb) from Item where membreid = :membreid AND date BETWEEN :dated AND :datef";
+    $params = array(':membreid' => (int) $membreid, ':dated' => $array['dated'], ':datef' => $array['datef']);
+    foreach (array('lieu', 'immat', 'principale') as $champ) {
+      if (isset($array[$champ]) && $array[$champ] !== '') {
+        $sql .= " AND `$champ` = :$champ";
+        $params[":$champ"] = $array[$champ];
+      }
     }
-    if ($_POST['immat'] != '') {
-      $requete = $requete . " AND immat = \"" . $_POST['immat'] . "\"";
+    // opérateur de hauteur : liste blanche
+    if (isset($array['hauteur'], $array['signe']) && $array['hauteur'] !== '' && in_array($array['signe'], array('=', '<', '>'), true)) {
+      $sql .= " AND hauteur " . $array['signe'] . " :hauteur";
+      $params[':hauteur'] = (int) $array['hauteur'];
     }
-    if ($_POST['principale'] != '') {
-      $requete = $requete . " AND principale = \"" . $_POST['principale'] . "\"";
+    if (isset($array['bisolo']) && in_array($array['bisolo'], array('0', '1'), true)) {
+      $sql .= " AND BS = :bs";
+      $params[':bs'] = (int) $array['bisolo'];
     }
-    if (($_POST['hauteur'] != '') && !empty($_POST['signe'])) {
-      $requete = $requete . " AND hauteur " . $_POST['signe'] . $_POST['hauteur'];
+    if (isset($array['travailent']) && in_array($array['travailent'], array('0', '1'), true)) {
+      $sql .= " AND TE = :te";
+      $params[':te'] = (int) $array['travailent'];
     }
-    if ($_POST['bisolo'] != '') {
-      $requete = $requete . " AND BS = " . $_POST['bisolo'];
+    // colonne « spécial » : liste blanche
+    if (isset($array['special']) && in_array($array['special'], array('M', 'N', 'L', 'W'), true)) {
+      $sql .= " AND `" . $array['special'] . "` = 1";
     }
-    if ($_POST['travailent'] != '') {
-      $requete = $requete . " AND TE = " . $_POST['travailent'];
-    }
-    if ($_POST['special'] != '') {
-      $requete = $requete . " AND " . $_POST['special'] . " = 1";
-    }
-    $query = $DB_con->query($requete);
-    $result = $query->fetch();
-    $result = $result[0];
-    return $result;
+    $query = $DB_con->prepare($sql);
+    $query->execute($params);
+    return $query->fetchColumn();
   }
   //SECTION select options
 
   function options_immat($membreid)
   {
     global $DB_con;
-    $requete = "SELECT immat, sum(nb) as total from Item where membreid = " . $membreid . " group by immat order by total desc";
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT immat, sum(nb) as total from Item where membreid = :membreid group by immat order by total desc");
+    $query->execute(array(':membreid' => (int) $membreid));
     $lignes = $query->fetchAll();
     return $lignes;
   }
@@ -253,8 +199,8 @@ class carnet
   function options_lieux($membreid)
   {
     global $DB_con;
-    $requete = "SELECT lieu, sum(nb) as total from Item where membreid = " . $membreid . " group by lieu order by total desc";
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT lieu, sum(nb) as total from Item where membreid = :membreid group by lieu order by total desc");
+    $query->execute(array(':membreid' => (int) $membreid));
     $lignes = $query->fetchAll();
     return $lignes;
   }
@@ -262,8 +208,8 @@ class carnet
   function options_principale($membreid)
   {
     global $DB_con;
-    $requete = "SELECT principale, sum(nb) as total from Item where membreid = " . $membreid . " group by principale order by total desc";
-    $query = $DB_con->query($requete);
+    $query = $DB_con->prepare("SELECT principale, sum(nb) as total from Item where membreid = :membreid group by principale order by total desc");
+    $query->execute(array(':membreid' => (int) $membreid));
     $lignes = $query->fetchAll();
     return $lignes;
   }

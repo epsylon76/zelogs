@@ -118,18 +118,18 @@ class carnetpdf
       <tr>
       <td class="t1 haut2" >' . date_unix_humain($lignes[$cle + $i]['date']) . '</td>
       <td class="t1 haut2" >' . trad_fct($lignes[$cle + $i]['fct']) . '</td>
-      <td class="t1 haut2" >' . $lignes[$cle + $i]['lieu'] . '</td>
-      <td class="t1 haut2" >' . $lignes[$cle + $i]['immat'] . '</td>
-      <td class="t1 haut2" >' . $lignes[$cle + $i]['aftype'] . '</td>
-      <td class="t1 haut2" >' . $lignes[$cle + $i]['principale'] . '</td>
-      <td class="t1 haut2" >' . $lignes[$cle + $i]['hauteur'] . '</td>
+      <td class="t1 haut2" >' . pdf_e($lignes[$cle + $i]['lieu']) . '</td>
+      <td class="t1 haut2" >' . pdf_e($lignes[$cle + $i]['immat']) . '</td>
+      <td class="t1 haut2" >' . pdf_e($lignes[$cle + $i]['aftype']) . '</td>
+      <td class="t1 haut2" >' . pdf_e($lignes[$cle + $i]['principale']) . '</td>
+      <td class="t1 haut2" >' . pdf_e($lignes[$cle + $i]['hauteur']) . '</td>
       <td class="t1 haut2" >' . trad_trav_ent($lignes[$cle + $i]['TE']) . '</td>
       <td class="t1 haut2" >' . $OA . '</td>
       <td class="t1 haut2" >' . $ORBAS . '</td>
       <td class="t1 haut2" >' . $ORNORM . '</td>
       <td class="t1 haut2" >' . $ORHAUT . '</td>
       <td class="t1 haut2" >' . $lignes[$cle + $i]['tpsvol'] * $lignes[$cle + $i]['nb'] . '</td>
-      <td>' . $lignes[$cle + $i]['com'] . '</td>
+      <td>' . pdf_e($lignes[$cle + $i]['com']) . '</td>
       </tr>';
       } else {
         //afficher des lignes vides pour compléter la page

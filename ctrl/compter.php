@@ -17,6 +17,10 @@ if(isset($_POST['dated']) && isset($_POST['datef']))
 {
   $dated=$_POST['dated']; //pour rendre plus lisible la vue, je préfère changer le nom des var
   $datef=$_POST['datef'];
+  foreach(array('lieu','immat','principale','hauteur','signe','bisolo','travailent','special') as $champ)
+  {
+    if(!isset($_POST[$champ]) || !is_string($_POST[$champ])){$_POST[$champ]='';}
+  }
   $lieu=$_POST['lieu'];
   $immat=$_POST['immat'];
   $principale=$_POST['principale'];
@@ -27,7 +31,7 @@ if(isset($_POST['dated']) && isset($_POST['datef']))
   $special=$_POST['special'];
 
   //on compte seulement si les deux dates sont definies
-  if(!empty($dated) && !empty($datef))
+  if(date_valide($dated) && date_valide($datef))
   {
     //on passe l'array POST dans la fonction de comptage
     if(!empty($special)){$_POST['special'] = trad_spe($special);}

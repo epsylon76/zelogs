@@ -21,7 +21,7 @@
 
               <div class="field">
                 <div class="control">
-                  <input type="date" name="dated" id="date1" class="input" value="<?php echo $dated; ?>" required />
+                  <input type="date" name="dated" id="date1" class="input" value="<?php echo isset($dated) ? e($dated) : ''; ?>" required />
                 </div>
               </div>
 
@@ -31,7 +31,7 @@
 
               <div class="field">
                 <div class="control">
-                  <input type="date" name="datef" class="input" value="<?php echo $datef; ?>" required />
+                  <input type="date" name="datef" class="input" value="<?php echo isset($datef) ? e($datef) : ''; ?>" required />
                 </div>
               </div>
 
@@ -54,11 +54,11 @@
                     <?php
                     if (isset($options_lieux)) {
                       foreach ($options_lieux as $option) {
-                        echo "<option value=\"" . $option['lieu'] . "\"";
+                        echo "<option value=\"" . e($option['lieu']) . "\" ";
                         if (isset($lieu) && $lieu == $option['lieu']) {
                           echo "selected";
                         }
-                        echo ">" . $option['lieu'];
+                        echo ">" . e($option['lieu']);
                         echo "  " . $option['total'] . " sauts";
                         echo "</option>";
                       }
@@ -87,11 +87,11 @@
                     <?php
                     if (isset($options_immat)) {
                       foreach ($options_immat as $option) {
-                        echo "<option value=\"" . $option['immat'] . "\"";
+                        echo "<option value=\"" . e($option['immat']) . "\" ";
                         if (isset($immat) && $immat == $option['immat']) {
                           echo "selected";
                         }
-                        echo ">" . $option['immat'];
+                        echo ">" . e($option['immat']);
                         echo "  " . $option['total'] . " sauts";
                         echo "</option>";
                       }
@@ -122,11 +122,11 @@
                     <?php
                     if (isset($options_principale)) {
                       foreach ($options_principale as $option) {
-                        echo "<option value=\"" . $option['principale'] . "\"";
+                        echo "<option value=\"" . e($option['principale']) . "\" ";
                         if (isset($principale) && $principale == $option['principale']) {
                           echo "selected";
                         }
-                        echo ">" . $option['principale'];
+                        echo ">" . e($option['principale']);
                         echo "  " . $option['total'] . " sauts";
                         echo "</option>";
                       }
@@ -171,7 +171,7 @@
 
               <div class="field">
                 <input type="text" name="hauteur" class="input" <?php if (isset($hauteur)) {
-                                                                  echo "value=\"" . $hauteur . "\"";
+                                                                  echo "value=\"" . e($hauteur) . "\"";
                                                                 } ?>></input>
               </div>
             </div>
@@ -274,7 +274,7 @@
               </div>
               <div class="field">
                 <div class="control">
-                <button class="button is-large is-fullwidth" disabled>Total : <?php echo $resultat ?></button>
+                <button class="button is-large is-fullwidth" disabled>Total : <?php echo e($resultat); ?></button>
                 </div>
               </div>
             </div>

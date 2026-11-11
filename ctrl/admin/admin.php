@@ -1,7 +1,8 @@
 <?php
-if($_SESSION['membreid']!=16)
+if((int) $_SESSION['membreid'] !== 16)
 {
   header('location:zelogsv3.php?page=accueil');
+  exit(); // sans exit, tout membre exécutait la page admin (corrigé le 11/11/2026)
 }
 
 
@@ -18,26 +19,24 @@ $liste_membres = $membres->liste_membres();
 
 include_once 'fct/calculs.php';
 
-if(isset($_GET['immat']) && isset($_GET['newimmat']))
+// actions admin : uniquement en POST avec jeton CSRF (11/11/2026)
+if($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_valide() && isset($_POST['immat']) && is_string($_POST['immat']))
 {
-  $aeronef->set_immat($_GET['immat'],$_GET['newimmat']);
+  if(isset($_POST['newimmat']) && is_string($_POST['newimmat']) && $_POST['newimmat'] !== '')
+  {
+    $aeronef->set_immat($_POST['immat'], $_POST['newimmat']);
+  }
+  elseif(isset($_POST['action']) && $_POST['action']=="addaf")
+  {
+    $aeronef->ajout_table_aeronef($_POST['immat']);
+  }
+  elseif(isset($_POST['newtype']) && is_string($_POST['newtype']) && $_POST['newtype'] !== '')
+  {
+    $aeronef->set_type($_POST['immat'], $_POST['newtype']);
+  }
   header('location:zelogsv3.php?page=admin');
+  exit();
 }
 
-if(isset($_GET['action']) && $_GET['action']=="addaf" && isset($_GET['immat']))
-{
-  $aeronef->ajout_table_aeronef($_GET['immat']);
-  header('location:zelogsv3.php?page=admin');
-}
-
-if(isset($_GET['newtype']) && isset($_GET['immat']))
-{
-  $aeronef->set_type($_GET['immat'], $_GET['newtype']);
-  header('location:zelogsv3.php?page=admin');
-}
-
-
-
-include_once 'vue/head.php';
 include_once 'vue/admin/admin.php';
 include_once 'vue/admin/scripts_admin.php';

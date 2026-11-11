@@ -1,19 +1,27 @@
 <?php
-
-include_once 'vue/modules/menu.php';
+// Suppression d'un saut : page de confirmation puis POST avec jeton CSRF (11/11/2026)
 
 //le modèle carnet
 include_once 'mdl/carnet.php';
-
 $carnet = new carnet();
 
-$membreid=$_SESSION['membreid'];
+$membreid = (int) $_SESSION['membreid'];
 
-//s'il y a un élément en POST on vérifie qu'on en est bien le propriétaire
-if(isset($_GET['element']) && $carnet->item_ownedby_membre($_GET['element'],$_SESSION['membreid']))
-{
-  if(isset($_GET['go'])){
-    //supression du saut confirmée
-    $carnet->suppr_saut($_GET['element']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $element = isset($_POST['element']) ? (int) $_POST['element'] : 0;
+  if (csrf_valide() && $carnet->item_ownedby_membre($element, $membreid)) {
+    $carnet->suppr_saut($element);
   }
+  header('Location: zelogsv3.php?page=carnet');
+  exit();
 }
+
+$element = isset($_GET['element']) ? (int) $_GET['element'] : 0;
+if (!$carnet->item_ownedby_membre($element, $membreid)) {
+  header('Location: zelogsv3.php?page=carnet');
+  exit();
+}
+$saut = $carnet->ligne_carnet($element);
+
+include_once 'vue/modules/menu.php';
+include_once 'vue/carnet/suppr_saut.php';
