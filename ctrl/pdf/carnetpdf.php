@@ -24,8 +24,18 @@ $lignes = $carnet->lignes_carnet($_SESSION['membreid']);
 if ($date_debut < date_premier_saut($membreid)) {
   $date_debut = date_premier_saut($membreid);
 }
-if ($date_debut > date_dernier_saut($membreid)) {
-  $date_debut = date_dernier_saut($membreid);
+// aucun saut à imprimer : on l'explique au lieu de sortir la page du dernier saut (11/11/2026)
+$dernier_saut = date_dernier_saut($membreid);
+if (count($lignes) === 0 || $date_debut > $dernier_saut) {
+  $message_titre = 'Aucun saut à imprimer';
+  $message_corps = (count($lignes) === 0)
+    ? 'Votre carnet ne contient encore aucun saut.'
+    : 'Aucun saut depuis le ' . e(date_unix_humain($date_debut)) . '. Votre dernier saut date du ' . e(date_unix_humain($dernier_saut)) . '.';
+  $message_retour = 'zelogsv3.php?page=carnet';
+  include_once 'vue/head.php';
+  include_once 'vue/modules/menu.php';
+  include_once 'vue/modules/message.php';
+  return;
 }
 //on definit le numero de ligne qui commence la premiere page en fontion de la date
 //pr($lignes);

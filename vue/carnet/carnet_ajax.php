@@ -37,7 +37,7 @@
 
           <div class="field has-addons">
             <div class="control">
-              <input class="input" type="date" value="<?php echo date('Y') . '-01-01'; ?>" name="date_arret" style="width:200px;">
+              <input class="input" type="date" value="<?php echo e($annee_pdf) . '-01-01'; ?>" name="date_arret" style="width:200px;">
             </div>
 
             <div class="control">
@@ -56,7 +56,7 @@
           <h5>Carnet à partir de la date</h5>
           <div class="field has-addons">
             <div class="control">
-              <input class="input" type="date" value="<?php echo date('Y') . '-01-01'; ?>" name="date_debut" style="width:200px;">
+              <input class="input" type="date" value="<?php echo e($annee_pdf) . '-01-01'; ?>" name="date_debut" style="width:200px;">
             </div>
 
             <div class="control">

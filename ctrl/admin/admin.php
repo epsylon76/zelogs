@@ -1,5 +1,7 @@
 <?php
-if((int) $_SESSION['membreid'] !== 16)
+include_once 'mdl/membres.php';
+$membres_droits = new membres();
+if(!$membres_droits->est_admin($_SESSION['membreid']))
 {
   header('location:zelogsv3.php?page=accueil');
   exit(); // sans exit, tout membre exécutait la page admin (corrigé le 11/11/2026)

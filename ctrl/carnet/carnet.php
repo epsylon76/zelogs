@@ -11,6 +11,9 @@ $lignes=$carnet->lignes_carnet($_SESSION['membreid']);
 
 $ajax_req = '{membreid :'.$_SESSION['membreid'].'}';
 
+// année proposée dans les formulaires PDF : celle du dernier saut (11/11/2026)
+$annee_pdf = $lignes ? substr($lignes[count($lignes) - 1]['date'], 0, 4) : date('Y');
+
 $nopage=count($lignes);
 
 if(($nopage % 10) == 0) //multiple de dix, on remonte 10 lignes plus haut

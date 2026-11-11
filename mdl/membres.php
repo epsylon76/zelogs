@@ -68,6 +68,15 @@ class membres
     $DB_con->prepare("DELETE FROM login_echecs WHERE login = :login")->execute(array(':login' => $login));
   }
 
+  // droit d'accès à la page admin (colonne membre.admin, 11/11/2026)
+  function est_admin($id)
+  {
+    global $DB_con;
+    $q = $DB_con->prepare("SELECT admin FROM membre WHERE id = :id");
+    $q->execute(array(':id' => (int) $id));
+    return (int) $q->fetchColumn() === 1;
+  }
+
   function donnees_membre($id)
   {
     global $DB_con;
