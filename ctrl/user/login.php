@@ -12,10 +12,19 @@ if (isset($_POST['login']) && isset($_POST['pass']))
     exit();
   }
 
+  $login_essai = mb_strtolower(trim($_POST['login']));
+  $ip = ip_client();
+  if ($membres->connexion_bloquee($login_essai, $ip))
+  {
+    header('Location: zelogsv3.php?page=login&erreur=bloque');
+    exit();
+  }
+
   $test_login = $membres->login($_POST['login'],$_POST['pass']);
   // si on obtient une réponse, alors l'utilisateur est un membre
   if ($test_login)
   {
+    $membres->effacer_echecs($login_essai);
     $donnees_membre = $membres->donnees_membre($test_login['id']);
 
     // nouvel identifiant de session à la connexion (fixation de session)
@@ -30,6 +39,7 @@ if (isset($_POST['login']) && isset($_POST['pass']))
   }
   else // si on ne trouve aucune réponse, le visiteur s'est trompé soit dans son login, soit dans son mot de passe
   {
+    $membres->noter_echec($login_essai, $ip);
     header('Location: zelogsv3.php?page=login&erreur=compt');
     exit();
   }

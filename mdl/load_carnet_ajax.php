@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include_once '../fct/session.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // accès réservé au membre connecté, et uniquement à SON carnet (corrigé le 11/11/2026)

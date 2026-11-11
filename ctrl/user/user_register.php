@@ -8,6 +8,14 @@ if(!isset($_POST['login'], $_POST['pass'], $_POST['pass_confirm'], $_POST['email
   exit();
 }
 
+// anti-robot : formulaire réellement affiché (session), au moins 3 s pour le remplir, champ piège vide
+$t_affichage = isset($_SESSION['inscription_t']) ? (int) $_SESSION['inscription_t'] : 0;
+unset($_SESSION['inscription_t']);
+if($t_affichage === 0 || (time() - $t_affichage) < 3 || (isset($_POST['site_web']) && $_POST['site_web'] !== '')){
+  header('location:new_account.php?erreur=robot');
+  exit();
+}
+
 if($_POST['pass']==$_POST['pass_confirm']){
 //var_dump($_POST);
 $login = trim($_POST['login']);

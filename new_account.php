@@ -1,3 +1,8 @@
+<?php
+// anti-robot (11/11/2026) : heure d'affichage du formulaire gardée en session
+include_once 'fct/session.php';
+$_SESSION['inscription_t'] = time();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -84,7 +89,7 @@
                 </div>
 
                 <div class="field">
-                  <input type="password" class="input" placeholder="Mot de Passe" name="pass" id="pass" required />
+                  <input type="password" class="input" placeholder="Mot de Passe (6 caractères minimum)" name="pass" id="pass" minlength="6" required />
                 </div>
 
                 <div class="field">
@@ -93,6 +98,12 @@
 
                 <div class="field">
                   <input type="email" class="input" placeholder="Votre email" name="email" required />
+                </div>
+
+                <!-- champ piège : invisible pour un humain, rempli par les robots -->
+                <div style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+                  <label for="site_web">Ne pas remplir</label>
+                  <input type="text" name="site_web" id="site_web" value="" tabindex="-1" autocomplete="off" />
                 </div>
 
                 <div class="field">

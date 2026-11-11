@@ -40,6 +40,34 @@ class membres
     return false;
   }
 
+  // Limite d'essais de connexion (11/11/2026) : table login_echecs
+  // 5 échecs en 15 min sur un identifiant, ou 20 depuis une même IP => blocage 15 min
+  function connexion_bloquee($login, $ip)
+  {
+    global $DB_con;
+    $q = $DB_con->prepare("SELECT
+        SUM(login = :login) AS par_login,
+        SUM(ip = :ip) AS par_ip
+      FROM login_echecs WHERE quand > NOW() - INTERVAL 15 MINUTE AND (login = :login2 OR ip = :ip2)");
+    $q->execute(array(':login' => $login, ':ip' => $ip, ':login2' => $login, ':ip2' => $ip));
+    $r = $q->fetch(PDO::FETCH_ASSOC);
+    return ($r['par_login'] >= 5) || ($r['par_ip'] >= 20);
+  }
+
+  function noter_echec($login, $ip)
+  {
+    global $DB_con;
+    $DB_con->prepare("INSERT INTO login_echecs (ip, login, quand) VALUES (:ip, :login, NOW())")
+      ->execute(array(':ip' => $ip, ':login' => $login));
+    $DB_con->exec("DELETE FROM login_echecs WHERE quand < NOW() - INTERVAL 1 DAY");
+  }
+
+  function effacer_echecs($login)
+  {
+    global $DB_con;
+    $DB_con->prepare("DELETE FROM login_echecs WHERE login = :login")->execute(array(':login' => $login));
+  }
+
   function donnees_membre($id)
   {
     global $DB_con;

@@ -38,7 +38,11 @@
               </div>
               <?php
             if (isset($_GET['erreur'])) {             
-                echo '<div class="field has-text-danger">Erreur, veuillez réessayer</div>';
+                if ($_GET['erreur'] === 'bloque') {
+                  echo '<div class="field has-text-danger">Trop d\'essais de connexion : réessayez dans 15 minutes.</div>';
+                } else {
+                  echo '<div class="field has-text-danger">Erreur, veuillez réessayer</div>';
+                }
             }
             if (isset($_GET['message'])) {
               if($_GET['message'] == 'registerok'){             
