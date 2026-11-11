@@ -78,7 +78,6 @@
                 $immat_html = e($ligne['immat']);
                 echo "<tr class=\"odd gradeX\">";
                 echo "<td>{$immat_html}";
-                echo " <a href='https://www.airport-data.com/aircraft/" . e(rawurlencode($ligne['immat'])) . ".html' target='_blank' rel='noopener'><i class='fa fa-search'></i></a>";
                 if ($type == "?" && $ligne['immat'] != "") {
                   echo "<form action='zelogsv3.php?page=admin' method='post' style='display:inline' class='pull-right'>" . csrf_champ();
                   echo "<input type='hidden' name='action' value='addaf'/><input type='hidden' name='immat' value='{$immat_html}'/>";

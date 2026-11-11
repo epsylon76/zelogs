@@ -14,7 +14,7 @@ $_SESSION['inscription_t'] = time();
 
   <title>Zelogs - carnet de saut Parapro</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600" rel="stylesheet">
+  <link href="dist/css/lato.css" rel="stylesheet">
 
   <!-- Bulma CSS -->
   <link href="dist/css/bulma.min.css" rel="stylesheet">

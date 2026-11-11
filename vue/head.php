@@ -10,7 +10,7 @@
 
     <title>Zelogs - carnet de saut Parapro</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600" rel="stylesheet">
+    <link href="dist/css/lato.css" rel="stylesheet">
 
     <!-- Bulma CSS -->
     <link href="dist/css/bulma.min.css" rel="stylesheet">
@@ -21,15 +21,15 @@
     <!-- Custom CSS -->
     <link href="dist/css/custom.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    
+    
 
 
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="dist/js/jquery-3.7.1.min.js"></script>
     <!-- ChartJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+    <script src="dist/js/chart-4.6.1.umd.min.js"></script>
 
 
 </head>

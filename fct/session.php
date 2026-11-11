@@ -1,6 +1,12 @@
 <?php
 // Ouverture de la session avec un cookie protégé (11/11/2026) :
 // HttpOnly (illisible en JavaScript), SameSite=Lax, Secure derrière NPM en HTTPS.
+// Politique de sécurité du contenu (11/11/2026) : tout est hébergé sur le site depuis
+// le retrait des CDN ; le JS inline reste autorisé (scripts dans les vues).
+if (!headers_sent()) {
+  header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'");
+}
+
 if (session_status() === PHP_SESSION_NONE) {
   $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
     || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');

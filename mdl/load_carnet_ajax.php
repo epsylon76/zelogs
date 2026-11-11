@@ -31,7 +31,7 @@ foreach ($lignes as $ligne) {
   $items[$i][0] = '<span style="display:none">' . $ligne['date'] . '</span>' . date_unix_humain($ligne['date']);
   $items[$i][1] = $carnet->icones_type_saut($ligne['BS']) . " <span class='pull-right' style='margin-right:10px;'>{$ligne['nb']}</span>";
   $items[$i][2] = e($ligne['lieu']);
-  $items[$i][3] = e($ligne['immat']) . " <a href='https://www.airport-data.com/aircraft/" . e(rawurlencode($ligne['immat'])) . ".html' target='_blank' rel='noopener'><i class='fa fa-search'></i></a>";
+  $items[$i][3] = e($ligne['immat']);
   $items[$i][4] = e($ligne['hauteur']);
   $items[$i][5] = e($ligne['principale']);
 
