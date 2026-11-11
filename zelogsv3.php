@@ -25,6 +25,10 @@ if (!$connecte)
 {
   if (isset($_GET['page']) && $_GET['page'] == "register") {
     include_once 'ctrl/user/user_register.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] == "mdp_oublie") {
+    include_once 'ctrl/user/mdp_oublie.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] == "mdp_reset") {
+    include_once 'ctrl/user/mdp_reset.php';
   } else {
     include_once('ctrl/user/login.php');
   }

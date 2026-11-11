@@ -48,6 +48,9 @@
               if($_GET['message'] == 'registerok'){             
               echo '<div class="field has-text-success">Nouveau compte enregistré</div>';
               }
+              if($_GET['message'] == 'mdpok'){
+              echo '<div class="field has-text-success">Mot de passe changé, vous pouvez vous connecter.</div>';
+              }
           }
             ?>
               <div class="field">
@@ -58,6 +61,9 @@
                   <a class="has-text-weight-light has-text-right is-pulled-right" style="margin-top:20px;" href="new_account.php">
                     créer un compte
                   </a>
+                </p>
+                <p class="has-text-right" style="clear:both; padding-top:4px;">
+                  <a class="has-text-weight-light is-size-7" href="zelogsv3.php?page=mdp_oublie">mot de passe oublié ?</a>
                 </p>
                 
               </div>
